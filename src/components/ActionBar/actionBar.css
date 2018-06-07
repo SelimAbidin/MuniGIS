@@ -1,0 +1,9 @@
+.actionBar {
+    height: 20px;
+    width: 100%;
+    background-color: dodgerblue;
+    color: #ffffff;
+    font-family: "Roboto", "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    line-height:20px; 
+}

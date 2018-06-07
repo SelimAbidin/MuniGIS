@@ -1,0 +1,40 @@
+{
+  "name": "munigis",
+  "version": "0.0.1",
+  "description": "MuniGIS",
+  "main": "index.js",
+  "repository": "https://bitbucket.org/SelimAbidin/cloudgis.git",
+  "author": "Selim Abidin",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack",
+    "dev:watch": "webpack-dev-server --watch --hot"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "font-awesome": "^4.7.0",
+    "ol": "^4.6.5",
+    "primereact": "^1.5.3",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-transition-group": "^2.3.1",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.10.2",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  }
+}

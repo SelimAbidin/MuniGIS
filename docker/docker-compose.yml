@@ -1,0 +1,26 @@
+version: '3'
+services: 
+  nginx:
+    image: selimabidin/nginx_geo_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
+    links:
+      - "geoserver:geoserver"
+  postgis:
+    image: mdillon/postgis
+    ports:
+        - "5432:5432"
+    environment:
+        - "POSTGRES_PASSWORD=postgres"
+    restart: always
+  geoserver:
+    image: oscarfonts/geoserver
+    depends_on:
+        - postgis
+    ports:
+        - "8080:8080"
+    links:
+        - "postgis:postgis"
+    restart: always
