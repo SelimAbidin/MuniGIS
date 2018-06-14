@@ -16,12 +16,14 @@ class OLMap extends React.Component {
 
     componentDidMount() {
         let content = this._content
-        let mousePositionControl = new MousePosition({
-            projection: 'EPSG:4326',
-            className: 'custom-mouse-position',
-            target: document.getElementById('mouse-position'),
-            undefinedHTML: '&nbsp;'
-        })
+        this._onAnimationFrame = this._onAnimationFrame.bind(this)
+        
+        // let mousePositionControl = new MousePosition({
+        //     projection: 'EPSG:4326',
+        //     className: 'custom-mouse-position',
+        //     target: document.getElementById('mouse-position'),
+        //     undefinedHTML: '&nbsp;'
+        // })
 
         let view = new View({ center: [0, 0], zoom: 2 })
         let map = new Map({
@@ -35,18 +37,25 @@ class OLMap extends React.Component {
                 })
             ]
         })
-
         
         this._map = map
         this._view = view
-        window.map = map
-
-
         this.updateLayers()
-
         map.on('pointermove', this._onMouseMove.bind(this))
         map.on('moveend', this._onMoveEnd.bind(this))
+        this._onAnimationFrame()
     }
+
+    _onAnimationFrame() {
+
+        if(this._moved) {
+            const {mousePointer} = this.props
+            mousePointer(this._currentMousePointer, this._view.getProjection().getCode())
+            this._moved = true
+        }
+        requestAnimationFrame(this._onAnimationFrame)
+    }
+
 
     updateLayers() {
         let layer = new TileLayer({
@@ -62,8 +71,8 @@ class OLMap extends React.Component {
 
 
     _onMouseMove(e) {
-        const {mousePointer} = this.props
-        mousePointer(e.coordinate, this._view.getProjection().getCode())
+        this._moved = true
+        this._currentMousePointer = e.coordinate
     }
 
     _onMoveEnd(e) {

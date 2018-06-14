@@ -2,6 +2,7 @@ const {join} = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const IgnorePlugin = require('webpack').IgnorePlugin
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 
 
@@ -52,15 +53,24 @@ module.exports = {
             //         use:'file-loader'
             //     })
             // }
+            // { 
+            //     test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/, 
+            //     loader: "file-loader?name=/style/[name].[ext]" 
+            // }
             { 
                 test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/, 
-                loader: "file-loader?name=/style/[name].[ext]" 
+                loader: "file-loader",
+                options: {
+                    name: '[name].[ext]',
+                    publicPath: '/style/'
+                }
             }
         ]
     },
-
+    
     plugins: [
-        // new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin(),
+        // new UglifyJsPlugin({sourceMap:true}),
         extractStyle,
         extractTiff,
         new IgnorePlugin(/\.node_modules/)

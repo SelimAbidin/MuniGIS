@@ -6,13 +6,16 @@ import MenuBarContainer from './containers/MenuBarContainer/index.jsx'
 import OLMap from './containers/OLMap/index.jsx'
 import reducer from './redux/reducers/'
 import ActionBarContainer from './containers/ActionBarContainer/index.jsx'
-import { HashRouter as Router, Route } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
+import LayerMenuContainer from './containers/LayerMenuContainer'
 
-
-import './init.css'
 import 'primereact/resources/primereact.min.css'
 import 'primereact/resources/themes/omega/theme.css'
 import 'font-awesome/css/font-awesome.css'
+
+import './init.css'
+import UIStateSwitcher from './containers/UIStateSwitcher';
+
 
 const store = createStore(reducer)
 
@@ -22,10 +25,13 @@ const App = () => (
                 <React.Fragment>
                     <MenuBarContainer />
                         <div className="mapContent">
-                        <div id="layer" style={{height:'100%', width:'100px'}} >Layer</div>
+                            <LayerMenuContainer />
                             <OLMap />
                         </div>
                     <ActionBarContainer />
+
+                    <UIStateSwitcher />
+
                 </React.Fragment>
             </Router>
         </Provider>
