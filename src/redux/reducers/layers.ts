@@ -1,14 +1,14 @@
 
-let sampleLayers = [{
-    name: 'Layer Name 1',
-    url: 'hebebe',
-    type: 'GEOSERVER_WMS'
-}]
+const sampleLayers = [{
+    name: "Layer Name 1",
+    type: "GEOSERVER_WMS",
+    url: "hebebe",
+}];
 
-interface LayerState {
-    type:string;
+interface ILayerState {
+    type: string;
 }
 
-export const layers = (state=sampleLayers, action: LayerState) => {
-    return state
-}
+export const layers = (state= sampleLayers, action: ILayerState) => {
+    return state;
+};

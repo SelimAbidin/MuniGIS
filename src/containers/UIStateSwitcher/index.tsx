@@ -1,32 +1,31 @@
-import * as React from 'react'
-import {connect} from 'react-redux'
-import {STATES, setUIState} from '../../redux/actions/uiState'
-import ModalDialogContainer from './ModalDialogContainer';
+import * as React from "react";
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
+import {setUIState, STATES} from "../../redux/actions/uiState";
+import ModalDialogContainer from "./ModalDialogContainer";
 
-
-interface UIStateSwitcherProps {
-    UIState: String;
+interface IUIStateSwitcherProps {
+    UIState: string;
 }
 
-class UIStateSwitcher extends React.Component<UIStateSwitcherProps, any> {
+class UIStateSwitcher extends React.Component<IUIStateSwitcherProps, any> {
 
-    render() {
-        const {UIState} = this.props
-        if(UIState ===  STATES.DEFAULT) {
-            return null
+    public render() {
+        const {UIState} = this.props;
+        if (UIState ===  STATES.DEFAULT) {
+            return null;
         } else {
-            return <ModalDialogContainer />
+            return <ModalDialogContainer />;
         }
     }
 }
 
-const mapToProps = (state:any) => ({
-    UIState: state.UIState
-})
+const mapToProps = (state: any) => ({
+    UIState: state.UIState,
+});
 
-const dispatchToState = (dispatch:Function) => ({
+const dispatchToState = (dispatch: Dispatch ) => ({
     // onHide: (e:React.MouseEventHandler) => dispatch(setUIState(STATES.DEFAULT))
-})
+});
 
-
-export default connect(mapToProps,dispatchToState)(UIStateSwitcher)
+export default connect(mapToProps, dispatchToState)(UIStateSwitcher);

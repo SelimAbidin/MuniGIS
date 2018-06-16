@@ -1,9 +1,8 @@
-import {STATES,UI_STATE, UIStateAction} from '../actions/uiState'
+import {IUIStateAction, STATES, UI_STATE} from "../actions/uiState";
 
+export const uiState = (state= STATES.DEFAULT, action: IUIStateAction) => {
 
-export const uiState = (state=STATES.DEFAULT, action: UIStateAction) => {
+    if (action.type !== UI_STATE) { return state; }
 
-    if(action.type !== UI_STATE) return state
-    
-    return action.state
-}
+    return action.state;
+};

@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "webpack",
     "dev:watch": "webpack-dev-server --watch --hot",
-    "lint": "tslint -c tslint.json 'src/**/*.?(ts|tsx)'"
+    "lint": "tslint -c tslint.json 'src/**/*.ts' && tslint -c tslint.json 'src/**/*.tsx'",
+    "lin:fix": "tslint -c tslint.json 'src/**/*.ts' --fix && tslint -c tslint.json 'src/**/*.tsx'"
   },
   "dependencies": {
     "@types/ol": "^4.6.2",

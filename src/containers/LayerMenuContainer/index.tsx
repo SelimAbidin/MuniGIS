@@ -1,30 +1,31 @@
-import * as React from 'react'
-import LayerMenu from '../../components/LayerMenu';
-import {connect} from 'react-redux'
-import {setUIState, STATES} from '../../redux/actions/uiState'
+import * as React from "react";
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
+import LayerMenu from "../../components/LayerMenu";
+import {setUIState, STATES} from "../../redux/actions/uiState";
 
-const mapLayerData = (layers:Array<Object>) => {
-    return layers.map((i:any) => ({
-        label: i.name,
+const mapLayerData = (layers: object[]) => {
+    return layers.map((i: any) => ({
         data: i.name,
-    }))
-}
+        label: i.name,
+    }));
+};
 
-class LayerMenuContainer extends React.Component<any,any> {
+class LayerMenuContainer extends React.Component<any, any> {
 
-    render () {
-        const {layers,onAddServiceClick} = this.props
-        const mappedLayerData = mapLayerData(layers)
-        return <LayerMenu layers={mappedLayerData} onAddServiceClick={onAddServiceClick} />
+    public render() {
+        const {layers, onAddServiceClick} = this.props;
+        const mappedLayerData = mapLayerData(layers);
+        return <LayerMenu layers={mappedLayerData} onAddServiceClick={onAddServiceClick} />;
     }
 }
 
-const mapToProps = (state:any) => ({
-    layers: state.layers
-})
+const mapToProps = (state: any) => ({
+    layers: state.layers,
+});
 
-const dispatchToState = (dispatch:Function) => ({
-    onAddServiceClick : () => dispatch(setUIState(STATES.ADD_SERVICE))
-})
+const dispatchToState = (dispatch: Dispatch) => ({
+    onAddServiceClick : () => dispatch(setUIState(STATES.ADD_SERVICE)),
+});
 
-export default connect(mapToProps, dispatchToState)(LayerMenuContainer)
+export default connect(mapToProps, dispatchToState)(LayerMenuContainer);

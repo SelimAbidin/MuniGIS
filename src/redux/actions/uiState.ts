@@ -4,17 +4,16 @@
 //     ADD_SERVICE: 'ADD_SERVICE'
 // }
 
-
 export enum STATES {
-    DEFAULT = 'DEFAULT',
-    ADD_SERVICE = 'ADD_SERVICE'
+    DEFAULT = "DEFAULT",
+    ADD_SERVICE = "ADD_SERVICE",
 }
 
-export const UI_STATE = 'UI_STATE'
+export const UI_STATE = "UI_STATE";
 
-export interface UIStateAction {
-    type:string;
-    state:string
+export interface IUIStateAction {
+    type: string;
+    state: string;
 }
 
-export const setUIState = (state:any) : UIStateAction => ({type:UI_STATE,state})
+export const setUIState = (state: any): IUIStateAction => ({type: UI_STATE, state});
