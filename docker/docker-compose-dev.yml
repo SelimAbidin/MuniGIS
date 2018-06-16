@@ -1,14 +1,15 @@
 version: '3'
 services:
   postgis:
-    image: mdillon/postgis
+    image: mdillon/postgis:10-alpine
     ports:
         - "5432:5432"
     environment:
         - "POSTGRES_PASSWORD=test"
     restart: always
     volumes:
-        - "../pg_data:/var/lib/postgresql/data"
+        - "test_db:/var/lib/postgresql/data"
+
   geoserver:
     image: oscarfonts/geoserver
     depends_on:
@@ -17,4 +18,9 @@ services:
         - "8080:8080"
     links:
         - "postgis:postgis"
+    volumes: 
+        - "D:/DockerData/geo_data:/var/local/geoserver"
     restart: always
+
+volumes:
+    test_db:

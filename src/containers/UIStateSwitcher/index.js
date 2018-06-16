@@ -26,4 +26,6 @@ const dispatchToState = dispatch => ({
     onHide: e => dispatch(setUIState(STATES.DEFAULT))
 })
 
-export default connect(mapToProps,dispatchToState)(UIStateSwitcher)
+
+const UIS = connect(mapToProps,dispatchToState)(UIStateSwitcher)
+export default UIS

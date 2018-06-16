@@ -18,7 +18,7 @@ const extractTiff = new ExtractTextPlugin({
 })
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.tsx',
     output: {
         path:join(__dirname,'public'),
         filename: 'js/bundle.js' 
@@ -31,8 +31,19 @@ module.exports = {
         watchContentBase: true
     },
 
+    resolve: {
+        extensions: [".js",".jsx",".ts", ".tsx"]
+    },
+
     module: {
         rules: [
+            {
+                test:/\.(ts|tsx)$/,
+                include:[
+                    join(__dirname,'src')
+                ],
+                use:['ts-loader']
+            },
             {
                 test:/\.(js|jsx)$/,
                 include:[
@@ -40,6 +51,7 @@ module.exports = {
                 ],
                 use:['babel-loader']
             },
+           
             {
                 test:/\.css$/,
                 use:extractStyle.extract({
@@ -69,7 +81,7 @@ module.exports = {
     },
     
     plugins: [
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         // new UglifyJsPlugin({sourceMap:true}),
         extractStyle,
         extractTiff,
