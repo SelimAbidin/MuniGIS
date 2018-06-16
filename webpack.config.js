@@ -51,7 +51,6 @@ module.exports = {
                 ],
                 use:['babel-loader']
             },
-           
             {
                 test:/\.css$/,
                 use:extractStyle.extract({
@@ -59,16 +58,6 @@ module.exports = {
                     use:'css-loader'
                 })
             },
-            // {
-            //     test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/,
-            //     use: extractTiff.extract({
-            //         use:'file-loader'
-            //     })
-            // }
-            // { 
-            //     test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/, 
-            //     loader: "file-loader?name=/style/[name].[ext]" 
-            // }
             { 
                 test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/, 
                 loader: "file-loader",
@@ -80,7 +69,7 @@ module.exports = {
     },
     
     plugins: [
-        // new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin(),
         // new UglifyJsPlugin({sourceMap:true}),
         extractStyle,
         extractTiff,
