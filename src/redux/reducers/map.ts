@@ -16,7 +16,14 @@ export const map = (state={}, action) => {
     }
 }
 
-export const cursorPosition = (state={}, action) => {
+interface CursorPosition {
+    lon:number;
+    lat:number;
+    srid:string;
+    type:string;
+}
+
+export const cursorPosition = (state={}, action:CursorPosition) => {
 
     switch (action.type) {
         case MapActions.POINTER_CHANGE :

@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {cursorPosition,map} from './map'
+import {cursorPosition,map} from './map.ts'
 import {uiState} from './uiState'
 import {layers} from './layers'
 
