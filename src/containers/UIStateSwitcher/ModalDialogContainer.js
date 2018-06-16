@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {connect} from 'react-redux'
 import ModalDialog from '../../components/Dialogs/ModalDialog'
 import {STATES, setUIState} from '../../redux/actions/uiState'

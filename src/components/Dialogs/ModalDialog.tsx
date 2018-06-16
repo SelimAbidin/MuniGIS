@@ -1,9 +1,9 @@
-import React from 'react'
+import * as React from 'react'
 import {Button} from 'primereact/components/button/Button';
 import {Dialog} from 'primereact/components/dialog/Dialog';
 
 
-class ModalDialog extends React.Component {
+class ModalDialog extends React.Component<any,any> {
 
     constructor(props) {
         super(props)

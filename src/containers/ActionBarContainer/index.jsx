@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import ActionBar from '../../components/ActionBar/index.jsx'
+import ActionBar from '../../components/ActionBar/index'
 
 const ActionBarContainer = ({cursorPosition}) => (
     <ActionBar cursorPosition={cursorPosition} />
