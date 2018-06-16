@@ -12,12 +12,12 @@ interface LayerMenuProps {
 
 class LayerMenu extends React.Component<LayerMenuProps, any> {
     
-    constructor(props) {
+    constructor(props:LayerMenuProps) {
         super(props)
         this.state = {width:200}
     }
 
-    onChange(e) { }
+    onChange(e:any) { }
 
     render() {
         let {width} = this.state

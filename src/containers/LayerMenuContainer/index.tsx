@@ -3,8 +3,8 @@ import LayerMenu from '../../components/LayerMenu';
 import {connect} from 'react-redux'
 import {setUIState, STATES} from '../../redux/actions/uiState'
 
-const mapLayerData = (layers) => {
-    return layers.map(i => ({
+const mapLayerData = (layers:Array<Object>) => {
+    return layers.map((i:any) => ({
         label: i.name,
         data: i.name,
     }))
@@ -19,12 +19,12 @@ class LayerMenuContainer extends React.Component<any,any> {
     }
 }
 
-const mapToProps = state => ({
+const mapToProps = (state:any) => ({
     layers: state.layers
 })
 
-const dispatchToState = dispatch => ({
-    onAddServiceClick : e => dispatch(setUIState(STATES.ADD_SERVICE))
+const dispatchToState = (dispatch:Function) => ({
+    onAddServiceClick : () => dispatch(setUIState(STATES.ADD_SERVICE))
 })
 
 export default connect(mapToProps, dispatchToState)(LayerMenuContainer)

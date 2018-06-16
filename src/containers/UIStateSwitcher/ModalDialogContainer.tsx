@@ -28,8 +28,8 @@ class ModalDialogContainer extends React.Component<any,any> {
     }
 }
 
-const dispatchToState = dispatch => ({
-    onHide: e => dispatch(setUIState(STATES.DEFAULT))
+const dispatchToState = (dispatch:Function) => ({
+    onHide: () => dispatch(setUIState(STATES.DEFAULT))
 })
 
 export default connect(undefined, dispatchToState)(ModalDialogContainer)

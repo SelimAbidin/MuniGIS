@@ -2,11 +2,11 @@ import * as React from 'react'
 import {connect} from 'react-redux'
 import ActionBar from '../../components/ActionBar/index'
 
-const ActionBarContainer = ({cursorPosition}) => (
+const ActionBarContainer = ({cursorPosition}:{cursorPosition:any}) => (
     <ActionBar cursorPosition={cursorPosition} />
 )
 
-const mapToProps = state => ({
+const mapToProps = (state:any) => ({
     cursorPosition: state.cursorPosition
 })
 

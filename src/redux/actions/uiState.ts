@@ -12,4 +12,9 @@ export enum STATES {
 
 export const UI_STATE = 'UI_STATE'
 
-export const setUIState = (state) => ({type:UI_STATE,state})
+export interface UIStateAction {
+    type:string;
+    state:string
+}
+
+export const setUIState = (state:any) : UIStateAction => ({type:UI_STATE,state})

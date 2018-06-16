@@ -72,12 +72,12 @@ class OLMap extends React.Component<OlProps, any>  {
         this._map.addLayer(layer)
     }
 
-    _onMouseMove(e) {
+    _onMouseMove(e:any) {
         this._moved = true
         this._currentMousePointer = e.coordinate
     }
 
-    _onMoveEnd(e) {
+    _onMoveEnd(e:any) {
         const {history} = this.props
         const map = this._map
         const view = map.getView()
@@ -90,7 +90,7 @@ class OLMap extends React.Component<OlProps, any>  {
         extentChange(mapExtent, adres)
     }
 
-    _onContextMenu(e) {
+    _onContextMenu(e:any) {
         e.preventDefault()
     }
 
@@ -99,13 +99,13 @@ class OLMap extends React.Component<OlProps, any>  {
     }
 }
 
-const mapToProps = state => ({
+const mapToProps = (state:Object) => ({
 
 })
 
-const dispatchToState = dispatch => ({
-    extentChange: (extent, center) => dispatch( setExtent( extent, center ) ),
-    mousePointer: (coordinate, epsg) => dispatch(setCoordinate(coordinate[0],coordinate[1], epsg))
+const dispatchToState = (dispatch:Function) => ({
+    extentChange: (extent:Array<number>, center:Array<number>) => dispatch( setExtent( extent, center ) ),
+    mousePointer: (coordinate:Array<number>, epsg:string) => dispatch(setCoordinate(coordinate[0],coordinate[1], epsg))
 })
 
 export default connect(mapToProps,dispatchToState)(withRouter(OLMap))

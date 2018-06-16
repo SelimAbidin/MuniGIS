@@ -1,4 +1,3 @@
-import { immutableArray } from "../../utils/immutable";
 
 let sampleLayers = [{
     name: 'Layer Name 1',
@@ -6,6 +5,10 @@ let sampleLayers = [{
     type: 'GEOSERVER_WMS'
 }]
 
-export const layers = (state=sampleLayers, action) => {
+interface LayerState {
+    type:string;
+}
+
+export const layers = (state=sampleLayers, action: LayerState) => {
     return state
 }

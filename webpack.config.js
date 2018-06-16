@@ -12,10 +12,10 @@ const extractStyle = new ExtractTextPlugin({
     allChunks: true,
 })
 
-const extractTiff = new ExtractTextPlugin({
-    filename: 'style/[name].[ext]',
-    allChunks: true,
-})
+// const extractTiff = new ExtractTextPlugin({
+//     filename: 'style/[name].[ext]',
+//     allChunks: true,
+// })
 
 module.exports = {
     entry: './src/index.tsx',
@@ -69,10 +69,10 @@ module.exports = {
     },
     
     plugins: [
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         // new UglifyJsPlugin({sourceMap:true}),
         extractStyle,
-        extractTiff,
+        // extractTiff,
         new IgnorePlugin(/\.node_modules/)
     ]
 }

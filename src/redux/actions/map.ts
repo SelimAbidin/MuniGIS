@@ -14,14 +14,14 @@ export interface CursorPositionAction {
 
 export interface ExtentAction {
     type:string;
-    extent:Array<Number>;
-    center:Array<Number>;
+    extent:Array<number>;
+    center:Array<number>;
 }
 
-export const setExtent = (extent, center) : ExtentAction => {
+export const setExtent = (extent:Array<number>, center:Array<number>) : ExtentAction => {
     return {type:MapActions.EXTENT_CHANGE, extent, center}
 }
 
-export const setCoordinate = (lon,lat, srid): CursorPositionAction => {
+export const setCoordinate = (lon:number,lat:number, srid:string): CursorPositionAction => {
     return {type:MapActions.POINTER_CHANGE, lon,lat, srid}
 }

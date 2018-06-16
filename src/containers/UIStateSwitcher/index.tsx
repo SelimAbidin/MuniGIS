@@ -13,8 +13,6 @@ class UIStateSwitcher extends React.Component<UIStateSwitcherProps, any> {
     render() {
         const {UIState} = this.props
         if(UIState ===  STATES.DEFAULT) {
-            console.log('retuned null');
-            
             return null
         } else {
             return <ModalDialogContainer />
@@ -22,12 +20,12 @@ class UIStateSwitcher extends React.Component<UIStateSwitcherProps, any> {
     }
 }
 
-const mapToProps = state => ({
+const mapToProps = (state:any) => ({
     UIState: state.UIState
 })
 
-const dispatchToState = dispatch => ({
-    onHide: e => dispatch(setUIState(STATES.DEFAULT))
+const dispatchToState = (dispatch:Function) => ({
+    // onHide: (e:React.MouseEventHandler) => dispatch(setUIState(STATES.DEFAULT))
 })
 
 

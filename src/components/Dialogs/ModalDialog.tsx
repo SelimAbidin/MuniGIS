@@ -5,10 +5,6 @@ import {Dialog} from 'primereact/components/dialog/Dialog';
 
 class ModalDialog extends React.Component<any,any> {
 
-    constructor(props) {
-        super(props)
-    }
-
     render() {
 
         const {onHide,children} = this.props

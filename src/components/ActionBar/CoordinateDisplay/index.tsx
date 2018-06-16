@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const CoordinateDisplay = ({lon, lat, srid}) => {
+const CoordinateDisplay = ({lon, lat, srid}:{lon:number, lat:number, srid:string}) => {
 
     if(lon === undefined || lat === undefined) {
         return null

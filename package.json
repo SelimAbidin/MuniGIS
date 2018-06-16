@@ -8,9 +8,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack",
-    "dev:watch": "webpack && webpack-dev-server --watch --hot"
+    "dev:watch": "webpack-dev-server --watch --hot",
+    "lint": "tslint -c tslint.json 'src/**/*.?(ts|tsx)'"
   },
   "dependencies": {
+    "@types/ol": "^4.6.2",
     "@types/react": "^16.3.18",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.2",
@@ -40,6 +42,7 @@
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.21.0",
     "ts-loader": "^4.4.1",
+    "tslint": "^5.10.0",
     "typescript": "^2.9.2",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.10.2",
