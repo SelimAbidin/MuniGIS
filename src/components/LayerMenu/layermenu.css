@@ -1,0 +1,9 @@
+
+
+.layerMenu{
+    flex-shrink: 0;
+}
+
+.layerMenu .layerTree{
+    width: 100%;
+}

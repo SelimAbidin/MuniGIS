@@ -1,28 +1,34 @@
 import {connect} from 'react-redux'
-import React from 'react'
+import * as React from 'react'
 import Map from 'ol/map'
-import extent from 'ol/extent'
 import TileWMS from 'ol/source/TileWMS'
-import control from 'ol/control'
 import TileLayer from 'ol/layer/tile'
-import MousePosition from 'ol/control/MousePosition'
 import XYZ from 'ol/source/xyz'
 import View from 'ol/view'
 import {setExtent,setCoordinate} from '../../redux/actions/map'
 import { withRouter } from "react-router-dom"
 
+interface OlProps {
+    mousePointer:any,
+    history:any,
+    extentChange:Function
+}
 
-class OLMap extends React.Component {
+class OLMap extends React.Component<OlProps, any>  {
+
+    _content:HTMLElement;
+    _moved:Boolean;
+    _map:any;
+    _view:any;
+    _currentMousePointer:any;
+
+    constructor(props:any) {
+        super(props)
+    }
 
     componentDidMount() {
         let content = this._content
-        let mousePositionControl = new MousePosition({
-            projection: 'EPSG:4326',
-            className: 'custom-mouse-position',
-            target: document.getElementById('mouse-position'),
-            undefinedHTML: '&nbsp;'
-        })
-
+        this._onAnimationFrame = this._onAnimationFrame.bind(this)
         let view = new View({ center: [0, 0], zoom: 2 })
         let map = new Map({
             target: content,
@@ -35,17 +41,23 @@ class OLMap extends React.Component {
                 })
             ]
         })
-
         
         this._map = map
         this._view = view
-        window.map = map
-
-
         this.updateLayers()
-
         map.on('pointermove', this._onMouseMove.bind(this))
         map.on('moveend', this._onMoveEnd.bind(this))
+        this._onAnimationFrame()
+    }
+
+    _onAnimationFrame() {
+
+        if(this._moved) {
+            const {mousePointer} = this.props
+            mousePointer(this._currentMousePointer, this._view.getProjection().getCode())
+            this._moved = true
+        }
+        requestAnimationFrame(this._onAnimationFrame)
     }
 
     updateLayers() {
@@ -60,10 +72,9 @@ class OLMap extends React.Component {
         this._map.addLayer(layer)
     }
 
-
     _onMouseMove(e) {
-        const {mousePointer} = this.props
-        mousePointer(e.coordinate, this._view.getProjection().getCode())
+        this._moved = true
+        this._currentMousePointer = e.coordinate
     }
 
     _onMoveEnd(e) {
@@ -93,7 +104,7 @@ const mapToProps = state => ({
 })
 
 const dispatchToState = dispatch => ({
-    extentChange: (extent, center) => dispatch(setExtent((extent, center))),
+    extentChange: (extent, center) => dispatch( setExtent( extent, center ) ),
     mousePointer: (coordinate, epsg) => dispatch(setCoordinate(coordinate[0],coordinate[1], epsg))
 })
 

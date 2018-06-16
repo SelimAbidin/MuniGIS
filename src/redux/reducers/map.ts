@@ -1,13 +1,7 @@
 import {freeze, cloneObject} from '../../utils/immutable'
-import {MapActions} from '../actions/map.js'
+import {MapActions, CursorPositionAction, ExtentAction} from '../actions/map'
 
-
-let mapConfig = {
-    // extent:
-}
-
-export const map = (state={}, action) => {
-
+export const map = (state={}, action: ExtentAction) => {
     switch (action.type) {
         case MapActions.EXTENT_CHANGE :
             return freeze(cloneObject(state))
@@ -16,8 +10,7 @@ export const map = (state={}, action) => {
     }
 }
 
-export const cursorPosition = (state={}, action) => {
-
+export const cursorPosition = (state={}, action:CursorPositionAction) => {
     switch (action.type) {
         case MapActions.POINTER_CHANGE :
             const {lon,lat, srid} = action
