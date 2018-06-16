@@ -8,7 +8,6 @@ import View from 'ol/view'
 import {setExtent,setCoordinate} from '../../redux/actions/map'
 import { withRouter } from "react-router-dom"
 
-
 interface OlProps {
     mousePointer:any,
     history:any,
@@ -30,7 +29,6 @@ class OLMap extends React.Component<OlProps, any>  {
     componentDidMount() {
         let content = this._content
         this._onAnimationFrame = this._onAnimationFrame.bind(this)
-
         let view = new View({ center: [0, 0], zoom: 2 })
         let map = new Map({
             target: content,
