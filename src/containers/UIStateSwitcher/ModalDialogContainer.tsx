@@ -16,7 +16,7 @@ const types = [
 
 
 
-class ModalDialogContainer extends React.Component {
+class ModalDialogContainer extends React.Component<any,any> {
 
     render () {
         const {onHide} = this.props

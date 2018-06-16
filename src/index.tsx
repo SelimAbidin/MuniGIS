@@ -6,9 +6,9 @@ import MenuBarContainer from './containers/MenuBarContainer/'
 import { HashRouter as Router } from 'react-router-dom'
 import OLMap from './containers/OLMap/'
 import reducer from './redux/reducers/'
-import ActionBarContainer from './containers/ActionBarContainer/index.jsx'
+import ActionBarContainer from './containers/ActionBarContainer/'
 import LayerMenuContainer from './containers/LayerMenuContainer'
-import UIStateSwitcher from './containers/UIStateSwitcher/index.js';
+import UIStateSwitcher from './containers/UIStateSwitcher/';
 
 import 'primereact/resources/primereact.min.css'
 import 'primereact/resources/themes/omega/theme.css'

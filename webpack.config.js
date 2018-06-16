@@ -73,8 +73,7 @@ module.exports = {
                 test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/, 
                 loader: "file-loader",
                 options: {
-                    name: '[name].[ext]',
-                    publicPath: '/style/'
+                    name: '/style/[name].[ext]',
                 }
             }
         ]

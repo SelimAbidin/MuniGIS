@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import LayerMenu from '../../components/LayerMenu';
 import {connect} from 'react-redux'
 import {setUIState, STATES} from '../../redux/actions/uiState'
@@ -10,11 +10,7 @@ const mapLayerData = (layers) => {
     }))
 }
 
-class LayerMenuContainer extends React.Component {
-
-    constructor() {
-        super()
-    }
+class LayerMenuContainer extends React.Component<any,any> {
 
     render () {
         const {layers,onAddServiceClick} = this.props
@@ -22,8 +18,6 @@ class LayerMenuContainer extends React.Component {
         return <LayerMenu layers={mappedLayerData} onAddServiceClick={onAddServiceClick} />
     }
 }
-
-
 
 const mapToProps = state => ({
     layers: state.layers

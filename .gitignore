@@ -1,3 +1,5 @@
 node_modules
 pg_data
 .DS_Store
+public/js
+public/style

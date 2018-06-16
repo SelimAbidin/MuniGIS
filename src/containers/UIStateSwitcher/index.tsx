@@ -1,13 +1,17 @@
-import React from 'react'
+import * as React from 'react'
 import {connect} from 'react-redux'
 import {STATES, setUIState} from '../../redux/actions/uiState'
 import ModalDialogContainer from './ModalDialogContainer';
-class UIStateSwitcher extends React.Component {
+
+
+interface UIStateSwitcherProps {
+    UIState: String;
+}
+
+class UIStateSwitcher extends React.Component<UIStateSwitcherProps, any> {
 
     render() {
         const {UIState} = this.props
-        console.log('UIState' , UIState, UIState ===  STATES.DEFAULT);
-        
         if(UIState ===  STATES.DEFAULT) {
             console.log('retuned null');
             
@@ -27,5 +31,4 @@ const dispatchToState = dispatch => ({
 })
 
 
-const UIS = connect(mapToProps,dispatchToState)(UIStateSwitcher)
-export default UIS
+export default connect(mapToProps,dispatchToState)(UIStateSwitcher)
