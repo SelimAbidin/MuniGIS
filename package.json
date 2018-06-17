@@ -10,8 +10,8 @@
     "dev": "webpack",
     "dev:watch": "webpack-dev-server --watch --hot",
     "lint": "tslint -c tslint.json 'src/**/*.ts' && tslint -c tslint.json 'src/**/*.tsx'",
-    "lin:fix": "tslint -c tslint.json 'src/**/*.ts' --fix && tslint -c tslint.json 'src/**/*.tsx'",
-    "test": "mocha ./specs/**/*.spec.ts --require ts-node/register --watch"
+    "lint:fix": "tslint -c tslint.json 'src/**/*.ts' --fix && tslint -c tslint.json 'src/**/*.tsx' --fix ",
+    "test": "karma start"
   },
   "dependencies": {
     "@types/ol": "^4.6.2",

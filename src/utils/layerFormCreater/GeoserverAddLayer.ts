@@ -1,16 +1,16 @@
-import LayerAddForm from './LayerAddForm'
-import IFormComponent from './IFormComponent'
-import {IComponentModel, COMPONENT_TYPES} from '../dynamicFormComponents/IComponentModel'
+import {COMPONENT_TYPES, IComponentModel} from "../dynamicFormComponents/IComponentModel";
+import IFormComponent from "./IFormComponent";
+import LayerAddForm from "./LayerAddForm";
 
 class GeoserverAddLayer extends LayerAddForm {
-    
-    constructor(component:IFormComponent) {
+
+    constructor(component: IFormComponent) {
         super(component);
 
-        const firstComponent: IComponentModel = {type: COMPONENT_TYPES.INPUT}
-        component.setForm([firstComponent])
+        const firstComponent: IComponentModel = {type: COMPONENT_TYPES.INPUT};
+        component.setForm([firstComponent]);
     }
-    
+
 }
 
-export default GeoserverAddLayer
+export default GeoserverAddLayer;

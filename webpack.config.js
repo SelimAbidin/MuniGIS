@@ -70,7 +70,7 @@ module.exports = {
     },
     
     plugins: [
-        // new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin(),
         // new UglifyJsPlugin({sourceMap:true}),
         extractStyle,
         // extractTiff,
