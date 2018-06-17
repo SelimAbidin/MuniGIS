@@ -7,11 +7,8 @@
         "target": "es6",
         "jsx": "react"
     },
-    "include": [
-        "./src/**/*"
-    ],
-    "paths": {
-        "components/*": [ "src/components/*" ],
-        "containers/*": [ "src/containers/*" ]
-    }
+    "exclude": [
+        "node_modules"
+    ]
+
 }

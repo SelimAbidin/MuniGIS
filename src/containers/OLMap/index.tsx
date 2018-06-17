@@ -64,9 +64,9 @@ class OLMap extends React.Component<IOlProps, any>  {
     public updateLayers() {
         const layer = new TileLayer({
             source: new TileWMS({
-              params: {LAYERS: "TestWS:polygon", TILED: true},
+              params: {LAYERS: "TestWS:polygons", TILED: true},
               serverType: "geoserver",
-              url: "http://localhost/geoserver/TestWS/wms",
+              url: "http://localhost:8080/geoserver/TestWS/wms",
             }),
         });
 

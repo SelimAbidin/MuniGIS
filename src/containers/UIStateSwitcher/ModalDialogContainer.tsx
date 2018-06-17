@@ -4,23 +4,44 @@ import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import ModalDialog from "../../components/Dialogs/ModalDialog";
 import {setUIState, STATES} from "../../redux/actions/uiState";
-
-const types = [
-    {name: "New York", code: "NY", key: "New York"},
-    {name: "Rome", code: "RM", key: "Rome"},
-    {name: "London", code: "LDN", key: "London"},
-    {name: "Istanbul", code: "IST", key: "Istanbul"},
-    {name: "Paris", code: "PRS", key: "Paris"},
+import GeoserverAddLayer from '../../utils/layerFormCreater/GeoserverAddLayer'
+import IFormComponent from '../../utils/layerFormCreater/IFormComponent'
+import LayerAddForm from '../../utils/layerFormCreater/LayerAddForm'
+var citySelectItems:Array<any> = [
+    {label: 'GEOSERVER', value: 'geoserver'}
 ];
 
-class ModalDialogContainer extends React.Component<any, any> {
+
+class ModalDialogContainer extends React.Component<any, any> implements IFormComponent {
+ 
+
+    layerAddModelCreater: LayerAddForm
+    constructor(props:any){
+        super(props)
+        this.onChange = this.onChange.bind(this)
+    }
+
+    componentDidMount() {
+        this.layerAddModelCreater = new GeoserverAddLayer(this)
+    }
+
+    public setForm(obj: any): boolean {
+        throw new Error("Method not implemented.");
+    }
+
+    private onChange(e:object):void {
+        console.log(e);
+    }
 
     public render() {
         const {onHide} = this.props;
         return <ModalDialog visible={true} onHide={onHide} >
-                    <div>
-                        <Dropdown dataKey="key"  options={types} />
-                    </div>
+                        <select onChange={this.onChange} >
+                            {citySelectItems.map( ({label, value}) => ( <option key={value} value={value} >{label}</option> )) }
+                        </select>
+                        {/*
+                            // DropDown has some bugs. Its list is relative to visible area which cause it stays inside model
+                        <Dropdown style={{width:'150px'}} options={citySelectItems} placeholder="Select a Layer" onChange={this.onChange} /> */}
                </ModalDialog>;
     }
 }

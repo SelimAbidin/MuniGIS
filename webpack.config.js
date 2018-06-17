@@ -18,6 +18,7 @@ const extractStyle = new ExtractTextPlugin({
 // })
 
 module.exports = {
+    devtool: 'source-map',
     entry: './src/index.tsx',
     output: {
         path:join(__dirname,'public'),
@@ -39,16 +40,16 @@ module.exports = {
         rules: [
             {
                 test:/\.(ts|tsx)$/,
-                include:[
-                    join(__dirname,'src')
-                ],
-                use:['ts-loader']
+                // include:[
+                //     join(__dirname,'src')
+                // ],
+                use:['babel-loader','ts-loader']
             },
             {
                 test:/\.(js|jsx)$/,
-                include:[
-                    join(__dirname,'src')
-                ],
+                // include:[
+                //     join(__dirname,'src')
+                // ],
                 use:['babel-loader']
             },
             {
@@ -73,6 +74,6 @@ module.exports = {
         // new UglifyJsPlugin({sourceMap:true}),
         extractStyle,
         // extractTiff,
-        new IgnorePlugin(/\.node_modules/)
+        // new IgnorePlugin(/\.node_modules/)
     ]
 }

@@ -8,7 +8,7 @@ services:
         - "POSTGRES_PASSWORD=test"
     restart: always
     volumes:
-        - "test_db:/var/lib/postgresql/data"
+        - "pg_data:/var/lib/postgresql/data"
 
   geoserver:
     image: oscarfonts/geoserver
@@ -19,8 +19,9 @@ services:
     links:
         - "postgis:postgis"
     volumes: 
-        - "D:/DockerData/geo_data:/var/local/geoserver"
+        - "geo_data:/var/local/geoserver"
     restart: always
 
 volumes:
-    test_db:
+    pg_data:
+    geo_data:
