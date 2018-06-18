@@ -5,17 +5,10 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 
-
-
 const extractStyle = new ExtractTextPlugin({
     filename: 'style/style.css',
     allChunks: true,
 })
-
-// const extractTiff = new ExtractTextPlugin({
-//     filename: 'style/[name].[ext]',
-//     allChunks: true,
-// })
 
 module.exports = {
     devtool: 'source-map',
@@ -43,6 +36,7 @@ module.exports = {
                 // include:[
                 //     join(__dirname,'src')
                 // ],
+                exclude: join(__dirname, 'node_modules'),
                 use:['babel-loader','ts-loader']
             },
             {
@@ -50,6 +44,7 @@ module.exports = {
                 // include:[
                 //     join(__dirname,'src')
                 // ],
+                exclude: join(__dirname, 'node_modules'),
                 use:['babel-loader']
             },
             {
@@ -70,7 +65,7 @@ module.exports = {
     },
     
     plugins: [
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         // new UglifyJsPlugin({sourceMap:true}),
         extractStyle,
         // extractTiff,

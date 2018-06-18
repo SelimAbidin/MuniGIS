@@ -7,6 +7,7 @@ class ModalDialog extends React.Component<any, any> {
     public render() {
 
         const {onHide, children} = this.props;
+        
         const footer = <div>
             <Button label="Yes" icon="fa-check" onClick={onHide} />
             <Button label="No" icon="fa-close" onClick={onHide} />
@@ -14,10 +15,10 @@ class ModalDialog extends React.Component<any, any> {
 
         return (<div>
                 <div className="content-section implementation">
-                    <Dialog header="Godfather I"
+                    <Dialog header="Layer Add"
                             visible={true}
-                            width="350px"
-                            modal={true} minY={70}
+                            width="450px"
+                            modal={true}
                             footer={footer}
                             onHide={onHide}>
                        {children}

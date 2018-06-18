@@ -6,8 +6,7 @@ class GeoserverAddLayer extends LayerAddForm {
 
     constructor(component: IFormComponent) {
         super(component);
-
-        const firstComponent: IComponentModel = {type: COMPONENT_TYPES.INPUT};
+        const firstComponent: IComponentModel = {type: COMPONENT_TYPES.INPUT, name:'serviceURL'};
         component.setForm([firstComponent]);
     }
 

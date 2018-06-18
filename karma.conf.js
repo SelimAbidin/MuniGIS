@@ -8,19 +8,23 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['mocha', 'chai'],
     files: [
-      'specs/**/*.spec.ts'
+      'specs/**/*.spec.ts',
+      'specs/**/*.spec.tsx',
     ],
     exclude: [],
     preprocessors: {
-      'specs/**/*.spec.ts': [ 'webpack' ]
+      'specs/**/*.spec.ts': [ 'webpack' ],
+      'specs/**/*.spec.tsx': [ 'webpack' ]
     },
 
-    webpack: {
-      module: webpackConfig.module,
-      resolve: webpackConfig.resolve,
-      performance: { hints: false },
-      mode:'production'
-    },
+    // webpack: {
+    //   module: webpackConfig.module,
+    //   resolve: webpackConfig.resolve,
+    //   performance: { hints: false },
+    //   mode:'production'
+    // },
+
+    webpack: webpackConfig,
     reporters: ['progress'],
     port: 9876,
     colors: true,

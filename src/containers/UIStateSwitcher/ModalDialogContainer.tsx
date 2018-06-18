@@ -6,15 +6,34 @@ import {setUIState, STATES} from "../../redux/actions/uiState";
 import GeoserverAddLayer from "../../utils/layerFormCreater/GeoserverAddLayer";
 import IFormComponent from "../../utils/layerFormCreater/IFormComponent";
 import LayerAddForm from "../../utils/layerFormCreater/LayerAddForm";
+import { COMPONENT_TYPES } from "../../utils/dynamicFormComponents/IComponentModel";
+
+import './style.css'
+
 const citySelectItems: any[] = [
     {label: "GEOSERVER", value: "geoserver"},
 ];
 
-class ModalDialogContainer extends React.Component<any, any> implements IFormComponent {
+
+
+function wrapLine(component) {
+
+    return <div>
+            {component}
+            </div>
+}
+
+
+
+export class ModalDialogContainer extends React.Component<any, any> implements IFormComponent {
 
     public layerAddModelCreater: LayerAddForm;
     constructor(props: any) {
         super(props);
+    
+        this.state = {
+            form: []
+        }
         this.onChange = this.onChange.bind(this);
     }
 
@@ -22,29 +41,43 @@ class ModalDialogContainer extends React.Component<any, any> implements IFormCom
         this.layerAddModelCreater = new GeoserverAddLayer(this);
     }
 
-    public setForm(obj: any): boolean {
-        throw new Error("Method not implemented.");
+    public setForm(form: Array<object>): boolean {
+        
+        if(form !== undefined) {
+            this.setState({form})
+            return true
+        }
+
+        return false
     }
 
     public render() {
         const {onHide} = this.props;
-        return <ModalDialog visible={true} onHide={onHide} >
-                        <select onChange={this.onChange} >
-                            {
-                                citySelectItems.map( ({label, value}) => (
-                                    <option key={value} value={value} >{label}</option> ),
-                                )
-                            }
-                        </select>
-                        {/*
-                        DropDown has some bugs.
-                        Its list is relative to visible area which cause it stays inside model
-                        <Dropdown
-                            style={{width:'150px'}}
-                            options={citySelectItems}
-                            placeholder="Select a Layer"
-                            onChange={this.onChange} />
-                        */}
+        const {form} = this.state;
+        
+        return <ModalDialog className="layerAdd" visible={true} onHide={onHide} >
+
+                        {wrapLine(
+                         <select id="deneme_1" onChange={this.onChange} >
+                             {
+                                 citySelectItems.map( ({label, value}) => (
+                                     <option key={value} value={value} >{label}</option> ),
+                                 )
+                             }
+                         </select>
+                        )}
+                       
+                        {
+                            form.map(i => {
+                                
+                                const {type,name} = i
+                                if(type === COMPONENT_TYPES.INPUT) {
+                                    return <input type="text" key={name} name={name} />
+                                }
+                                
+                                return <span />
+                            })
+                        }
                </ModalDialog>;
     }
 

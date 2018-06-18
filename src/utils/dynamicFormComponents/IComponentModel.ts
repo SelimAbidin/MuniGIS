@@ -6,4 +6,5 @@ export enum COMPONENT_TYPES {
 
 export interface IComponentModel {
     type: COMPONENT_TYPES;
+    name: string;
 }
