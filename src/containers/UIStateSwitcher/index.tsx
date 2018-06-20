@@ -1,13 +1,12 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {setUIState, STATES} from "../../redux/actions/uiState";
-import ModalDialogContainer from "./ModalDialogContainer";
+import {STATES} from "../../redux/actions/uiState";
+import ModalDialogContainer from "./WMSDialogContainer";
 
 interface IUIStateSwitcherProps {
     UIState: string;
 }
-
 class UIStateSwitcher extends React.Component<IUIStateSwitcherProps, any> {
 
     public render() {

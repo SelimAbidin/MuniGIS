@@ -14,14 +14,14 @@ const mapLayerData = (layers: object[]) => {
 class LayerMenuContainer extends React.Component<any, any> {
 
     public render() {
-        const {layers, onAddServiceClick} = this.props;
-        const mappedLayerData = mapLayerData(layers);
+        const {services, onAddServiceClick} = this.props;
+        const mappedLayerData = mapLayerData(services);
         return <LayerMenu layers={mappedLayerData} onAddServiceClick={onAddServiceClick} />;
     }
 }
 
 const mapToProps = (state: any) => ({
-    layers: state.layers,
+    services: state.services,
 });
 
 const dispatchToState = (dispatch: Dispatch) => ({

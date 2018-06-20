@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
-import {layers} from "./layers";
+import {services} from "./services";
 import {cursorPosition, map} from "./map";
 import {uiState} from "./uiState";
 
-export default combineReducers({map, cursorPosition, UIState: uiState, layers});
+export default combineReducers({map, cursorPosition, UIState: uiState, services});

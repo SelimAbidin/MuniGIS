@@ -51,6 +51,8 @@ class OLMap extends React.Component<IOlProps, any>  {
         this._onAnimationFrame();
     }
 
+    
+
     public _onAnimationFrame() {
 
         if (this.moved) {

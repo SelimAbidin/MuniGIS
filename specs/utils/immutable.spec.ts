@@ -2,11 +2,6 @@ import {cloneObject,freeze,immutable, immutableArray} from '../../src/utils/immu
 import {assert} from 'chai'
 
 
-function test(params:string) {
-            
-}
-
-
 describe('immutable TS', () => {
 
     it('cloneObject', () => {
