@@ -8,10 +8,16 @@ import {connect} from "react-redux";
 import { withRouter } from "react-router-dom";
 import {Dispatch} from "redux";
 import {setCoordinate, setExtent} from "../../redux/actions/map";
+import {MapContext} from './MapContext'
+import Layer from "./Layers/Layer";
+import Layers from "./Layers";
+import { ServiceModel } from "../../redux/actions/service";
+
 
 interface IOlProps {
     mousePointer: any;
     history: any;
+    services: Array<ServiceModel>;
     extentChange: (extent: number[], center: number[]) => void;
 }
 
@@ -22,12 +28,12 @@ class OLMap extends React.Component<IOlProps, any>  {
     private map: any;
     private view: any;
     private currentMousePointer: any;
-
     constructor(props: any) {
         super(props);
     }
 
     public componentDidMount() {
+
         const content = this.content;
         this._onAnimationFrame = this._onAnimationFrame.bind(this);
         const view = new View({ center: [0, 0], zoom: 2 });
@@ -49,6 +55,8 @@ class OLMap extends React.Component<IOlProps, any>  {
         map.on("pointermove", this._onMouseMove.bind(this));
         map.on("moveend", this._onMoveEnd.bind(this));
         this._onAnimationFrame();
+
+        this.forceUpdate()
     }
 
     
@@ -64,6 +72,8 @@ class OLMap extends React.Component<IOlProps, any>  {
     }
 
     public updateLayers() {
+
+        /*
         const layer = new TileLayer({
             source: new TileWMS({
               params: {LAYERS: "TestWS:polygons", TILED: true},
@@ -71,8 +81,10 @@ class OLMap extends React.Component<IOlProps, any>  {
               url: "http://localhost:8080/geoserver/TestWS/wms",
             }),
         });
-
         this.map.addLayer(layer);
+        
+        */
+
     }
 
     public _onMouseMove(e: any) {
@@ -98,16 +110,29 @@ class OLMap extends React.Component<IOlProps, any>  {
     }
 
     public render() {
-        return <div
-                    onContextMenu={this._onContextMenu}
-                    style={{width: "100%", height: "100%"}}
-                    ref={(r) => this.content = r} >
-        </div>;
+
+        const {children, services} = this.props
+        return ( <React.Fragment>
+                <div
+                        onContextMenu={this._onContextMenu}
+                        style={{width: "100%", height: "100%"}}
+                        ref={(r) => this.content = r} >
+                </div>
+                <MapContext.Provider value={ {map: this.map} } >
+                {children}
+                <Layers>
+                {services.map( (service:ServiceModel) => {
+                        return <Layer key={service.name} url={service.serviceURL} layers={service.layers} />;
+                    })}
+                </Layers>
+
+                </MapContext.Provider>
+                </React.Fragment>)
     }
 }
 
 const mapToProps = (state: any) => ({
-
+    services: state.services
 });
 
 const dispatchToState = (dispatch: Dispatch) => ({

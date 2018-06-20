@@ -31,12 +31,12 @@ class WMSDialog extends React.Component<any, any> {
 
     public getFormData () :WMSFormModel {
 
-        const {serviceURL, layers}  = this.state;
+        const {serviceURL, selectedLayers}  = this.state;
         let name:string = "Service Name " + Math.round(Math.random() * 999);
 
         let model: WMSFormModel = {
             serviceURL,
-            layers,
+            layers:selectedLayers,
             name
         }
 

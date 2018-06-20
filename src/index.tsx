@@ -14,9 +14,11 @@ import "font-awesome/css/font-awesome.css";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/omega/theme.css";
 import "./init.css";
+import Layers from "./containers/OLMap/Layers";
+import Layer from "./containers/OLMap/Layers/Layer";
 
 const store = createStore(reducer);
-
+//https://demo.boundlessgeo.com/geoserver/ows
 const App = () => (
 
         <Provider store={store} >
@@ -25,7 +27,9 @@ const App = () => (
                     <MenuBarContainer />
                         <div className="mapContent">
                             <LayerMenuContainer />
-                            <OLMap />
+                            <OLMap>
+                               
+                            </OLMap>
                         </div>
                     <ActionBarContainer />
 
