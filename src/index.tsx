@@ -9,13 +9,10 @@ import MenuBarContainer from "./containers/MenuBarContainer/";
 import OLMap from "./containers/OLMap/";
 import UIStateSwitcher from "./containers/UIStateSwitcher/";
 import reducer from "./redux/reducers/";
-
 import "font-awesome/css/font-awesome.css";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/omega/theme.css";
 import "./init.css";
-import Layers from "./containers/OLMap/Layers";
-import Layer from "./containers/OLMap/Layers/Layer";
 
 const store = createStore(reducer);
 //https://demo.boundlessgeo.com/geoserver/ows

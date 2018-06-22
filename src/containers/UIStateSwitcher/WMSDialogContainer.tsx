@@ -20,7 +20,6 @@ export class WMSDialogContainer extends React.Component<any, any> {
 
     onAddLayer() {
         const {onAddLayer} = this.props
-
         const wmsDialog = this._wsmDialog
         let formData:WMSFormModel = wmsDialog.getFormData()
         const {name, serviceURL, layers} = formData
@@ -36,7 +35,10 @@ export class WMSDialogContainer extends React.Component<any, any> {
 }
 
 const dispatchToState = (dispatch: Dispatch) => ({
-    onAddLayer: (service:ServiceAction) => dispatch(service as any),
+    onAddLayer: (service:ServiceAction) => {
+        dispatch(service as any)
+        dispatch(setUIState(STATES.DEFAULT))
+    },
     onHide: e => dispatch(setUIState(STATES.DEFAULT))
 });
 
