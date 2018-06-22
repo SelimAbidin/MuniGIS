@@ -1,13 +1,12 @@
 import { IServiceAction, SERVICE_ACTIONS } from "../actions/service";
 
-let initial:any = localStorage.getItem("services")
+let initial: any = localStorage.getItem("services");
 
 try {
-    initial = JSON.parse(initial) 
+    initial = JSON.parse(initial);
 } catch (error) {
-    initial = []
+    initial = [];
 }
-
 
 export const services = (state= initial, action: IServiceAction) => {
 

@@ -1,10 +1,8 @@
-import {cloneObject, freeze} from "../../utils/immutable";
 import {ICursorPositionAction, IExtentAction, MapActions} from "../actions/map";
 
-
-let storage = localStorage.getItem("mapExtent")
-let mapCenter
-if(storage) {
+const storage = localStorage.getItem("mapExtent");
+let mapCenter;
+if (storage) {
     mapCenter = storage.split(",").map((i) => parseFloat(i));
 }
 
