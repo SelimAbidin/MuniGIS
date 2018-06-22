@@ -1,24 +1,24 @@
 
-export type ServiceModel = {
+export interface IServiceModel {
     name: string;
     layers: string[];
     serviceURL: string;
 }
 
-export type ServiceAction = {
+export interface IServiceAction {
     type: SERVICE_ACTIONS;
-    service: ServiceModel;
+    service: IServiceModel;
 }
 
 export enum SERVICE_ACTIONS {
     ADD_SERVICE = "ADD_SERVICE",
 }
 
-export const createWMSService = (name: string, serviceURL: string, layers: string[] ): ServiceAction => {
+export const createWMSService = (name: string, serviceURL: string, layers: string[] ): IServiceAction => {
     const type: SERVICE_ACTIONS = SERVICE_ACTIONS.ADD_SERVICE;
-    const service: ServiceModel = {
-        name, serviceURL, layers,
+    const service: IServiceModel = {
+        layers, name, serviceURL,
     };
-    const action: ServiceAction = {service, type};
+    const action: IServiceAction = {service, type};
     return action;
 };

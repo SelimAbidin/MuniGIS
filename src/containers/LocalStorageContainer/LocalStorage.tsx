@@ -1,22 +1,19 @@
-import * as React from "react"
+import * as React from "react";
 
-
-type StorageProps = {
-    data:any;
-    storeName:string;
+interface IStorageProps {
+    data: any;
+    storeName: string;
 }
 
-class LocalStorage extends React.Component<StorageProps> {
+class LocalStorage extends React.Component<IStorageProps> {
 
-    render() {
-        const {data, storeName} = this.props
-        console.log("deneme", storeName);
-        
-        if(data !== undefined) {
+    public render() {
+        const {data, storeName} = this.props;
+        if (data !== undefined) {
             localStorage.setItem(storeName, data);
         }
-        return null
+        return null;
     }
 }
 
-export default LocalStorage
+export default LocalStorage;

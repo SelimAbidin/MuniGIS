@@ -8,17 +8,16 @@ import {connect} from "react-redux";
 import { withRouter } from "react-router-dom";
 import {Dispatch} from "redux";
 import {setCoordinate, setExtent} from "../../redux/actions/map";
-import {MapContext} from './MapContext'
-import Layer from "./Layers/Layer";
-import Layers from "./Layers";
-import { ServiceModel } from "../../redux/actions/service";
+// import { IServiceModel } from "../../redux/actions/service";
+// import Layers from "./Layers";
+// import Layer from "./Layers/Layer";
 import LayerContainer from "./Layers/LayerContainer";
-
+import {MapContext} from "./MapContext";
 
 interface IOlProps {
     mousePointer: any;
     history: any;
-    map: Array<number>;
+    map: number[];
     extentChange: (center: number[]) => void;
 }
 
@@ -35,23 +34,21 @@ class OLMap extends React.Component<IOlProps, any>  {
 
     public componentDidMount() {
 
-        let mapExtent = this.props.map
-        
-        let lat = 0
-        let lon = 0
-        let zoom = 2
+        const mapExtent = this.props.map;
 
-        if(Array.isArray(mapExtent) && mapExtent.length === 3){
-            lon = mapExtent[0]
-            lat = mapExtent[1]
-            zoom = mapExtent[2]
-            console.log("gitdiii");
-            
+        let lat = 0;
+        let lon = 0;
+        let zoom = 2;
+
+        if (Array.isArray(mapExtent) && mapExtent.length === 3) {
+            lon = mapExtent[0];
+            lat = mapExtent[1];
+            zoom = mapExtent[2];
         }
 
         const content = this.content;
         this._onAnimationFrame = this._onAnimationFrame.bind(this);
-        const view = new View({ center: [lon,lat], zoom: zoom });
+        const view = new View({ center: [lon, lat], zoom });
         const map = new Map({
             layers: [
                 new TileLayer({
@@ -70,7 +67,7 @@ class OLMap extends React.Component<IOlProps, any>  {
         map.on("moveend", this._onMoveEnd.bind(this));
         this._onAnimationFrame();
 
-        this.forceUpdate()
+        this.forceUpdate();
     }
 
     public _onAnimationFrame() {
@@ -106,7 +103,7 @@ class OLMap extends React.Component<IOlProps, any>  {
 
     public render() {
 
-        const {children} = this.props
+        const {children} = this.props;
         return ( <React.Fragment>
                     <div
                             onContextMenu={this._onContextMenu}
@@ -117,12 +114,12 @@ class OLMap extends React.Component<IOlProps, any>  {
                         {children}
                         <LayerContainer />
                     </MapContext.Provider>
-                </React.Fragment>)
+                </React.Fragment>);
     }
 }
 
 const mapToProps = (state: any) => ({
-    map: state.map
+    map: state.map,
 });
 
 const dispatchToState = (dispatch: Dispatch) => ({
