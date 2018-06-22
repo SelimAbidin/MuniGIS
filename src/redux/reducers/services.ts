@@ -1,4 +1,4 @@
-import { SERVICE_ACTIONS, IServiceAction } from "../actions/service";
+import { IServiceAction, SERVICE_ACTIONS } from "../actions/service";
 const InitialServices = [];
 
 export const services = (state= InitialServices, action: IServiceAction) => {
