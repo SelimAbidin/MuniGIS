@@ -17,8 +17,9 @@ import { ServiceModel } from "../../redux/actions/service";
 interface IOlProps {
     mousePointer: any;
     history: any;
+    map: Array<number>;
     services: Array<ServiceModel>;
-    extentChange: (extent: number[], center: number[]) => void;
+    extentChange: (center: number[]) => void;
 }
 
 class OLMap extends React.Component<IOlProps, any>  {
@@ -34,9 +35,21 @@ class OLMap extends React.Component<IOlProps, any>  {
 
     public componentDidMount() {
 
+        let mapExtent = this.props.map
+        
+        let lat = 0
+        let lon = 0
+        let zoom = 2
+
+        if(Array.isArray(mapExtent) && mapExtent.length === 3){
+            lon = mapExtent[0]
+            lat = mapExtent[1]
+            zoom = mapExtent[2]
+        }
+
         const content = this.content;
         this._onAnimationFrame = this._onAnimationFrame.bind(this);
-        const view = new View({ center: [0, 0], zoom: 2 });
+        const view = new View({ center: [lon,lat], zoom: zoom });
         const map = new Map({
             layers: [
                 new TileLayer({
@@ -51,15 +64,12 @@ class OLMap extends React.Component<IOlProps, any>  {
 
         this.map = map;
         this.view = view;
-        this.updateLayers();
         map.on("pointermove", this._onMouseMove.bind(this));
         map.on("moveend", this._onMoveEnd.bind(this));
         this._onAnimationFrame();
 
         this.forceUpdate()
     }
-
-    
 
     public _onAnimationFrame() {
 
@@ -71,22 +81,6 @@ class OLMap extends React.Component<IOlProps, any>  {
         requestAnimationFrame(this._onAnimationFrame);
     }
 
-    public updateLayers() {
-
-        /*
-        const layer = new TileLayer({
-            source: new TileWMS({
-              params: {LAYERS: "TestWS:polygons", TILED: true},
-              serverType: "geoserver",
-              url: "http://localhost:8080/geoserver/TestWS/wms",
-            }),
-        });
-        this.map.addLayer(layer);
-        
-        */
-
-    }
-
     public _onMouseMove(e: any) {
         this.moved = true;
         this.currentMousePointer = e.coordinate;
@@ -96,13 +90,12 @@ class OLMap extends React.Component<IOlProps, any>  {
         const {history} = this.props;
         const map = this.map;
         const view = map.getView();
-        const mapExtent = view.calculateExtent(map.getSize());
         const center = view.getCenter();
         const zoom = view.getZoom();
         const adres = [...center, zoom];
         const {extentChange} = this.props;
         history.replace("@" + adres.join(","));
-        extentChange(mapExtent, adres);
+        extentChange(adres);
     }
 
     public _onContextMenu(e: any) {
@@ -132,11 +125,12 @@ class OLMap extends React.Component<IOlProps, any>  {
 }
 
 const mapToProps = (state: any) => ({
-    services: state.services
+    services: state.services,
+    // map: state.map
 });
 
 const dispatchToState = (dispatch: Dispatch) => ({
-    extentChange: (extent: number[], center: number[]) => dispatch( setExtent( extent, center ) ),
+    extentChange: (center: number[]) => dispatch( setExtent(center ) ),
     mousePointer: (coordinate: number[], epsg: string) => dispatch(setCoordinate(coordinate[0], coordinate[1], epsg)),
 });
 

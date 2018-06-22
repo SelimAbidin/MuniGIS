@@ -12,12 +12,11 @@ export interface ICursorPositionAction {
 
 export interface IExtentAction {
     type: string;
-    extent: number[];
     center: number[];
 }
 
-export const setExtent = (extent: number[], center: number[]): IExtentAction => {
-    return {type: MapActions.EXTENT_CHANGE, extent, center};
+export const setExtent = (center: number[]): IExtentAction => {
+    return {type: MapActions.EXTENT_CHANGE, center};
 };
 
 export const setCoordinate = (lon: number, lat: number, srid: string): ICursorPositionAction => {

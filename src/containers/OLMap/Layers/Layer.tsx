@@ -32,7 +32,7 @@ class Layer extends React.Component<any, any> {
 
     onRender(props): React.ReactNode {
 
-        const {map, layer} = props
+        const {map} = props
         if(map !== undefined) {
             
             let {url, layers} = this.props

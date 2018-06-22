@@ -13,6 +13,10 @@ import "font-awesome/css/font-awesome.css";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/omega/theme.css";
 import "./init.css";
+import LocalStorageContainer from "./containers/LocalStorageContainer/LocalStorageContainer";
+
+
+
 
 const store = createStore(reducer);
 //https://demo.boundlessgeo.com/geoserver/ows
@@ -29,9 +33,8 @@ const App = () => (
                             </OLMap>
                         </div>
                     <ActionBarContainer />
-
                     <UIStateSwitcher />
-
+                    <LocalStorageContainer />
                 </React.Fragment>
             </Router>
         </Provider>
