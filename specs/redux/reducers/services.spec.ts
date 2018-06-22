@@ -1,5 +1,5 @@
 import {assert} from "chai";
-import { createWMSService, ServiceAction } from "../../../src/redux/actions/service";
+import { createWMSService, IServiceAction } from "../../../src/redux/actions/service";
 import {services} from "../../../src/redux/reducers/services"
 import * as deepFreeze from 'deep-freeze'
 
@@ -11,14 +11,14 @@ describe.only('AddService', () => {
 
     it('should return initial state (Empty Array) ', () => {
 
-       let initialState = services(undefined, {} as ServiceAction);
+       let initialState = services(undefined, {} as IServiceAction);
        assert.isArray(initialState);
        assert.equal(initialState.length, 0);
     })
 
     it('should return with added service', () => {
 
-        let object:ServiceAction = createWMSService(serviceName, mockServiceURL, layers);
+        let object:IServiceAction = createWMSService(serviceName, mockServiceURL, layers);
         let servicesState = services(undefined, object);
         assert.isArray(servicesState);
         assert.equal(servicesState.length, 1);
@@ -28,7 +28,7 @@ describe.only('AddService', () => {
     it('state should not allow mutation', () => {
 
         let initialState = []
-        let object:ServiceAction = createWMSService(serviceName, mockServiceURL, layers);
+        let object:IServiceAction = createWMSService(serviceName, mockServiceURL, layers);
         deepFreeze(initialState)
         deepFreeze(object)
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { ServiceModel } from "../../redux/actions/service";
+// import { IServiceModel } from "../../redux/actions/service";
 import LocalStorage from "./LocalStorage";
 
 const ServiceStorage = connect( (state: any) => ({services: state.services}) ) ((props: any) => (
