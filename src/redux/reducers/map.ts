@@ -1,16 +1,15 @@
 import {cloneObject, freeze} from "../../utils/immutable";
 import {ICursorPositionAction, IExtentAction, MapActions} from "../actions/map";
 
-
-let mapCenter = localStorage.getItem("mapExtent").split(",").map(i => parseFloat(i))
-if(!Array.isArray(mapCenter)) {
-    mapCenter = []
+let mapCenter = localStorage.getItem("mapExtent").split(",").map((i) => parseFloat(i));
+if (!Array.isArray(mapCenter)) {
+    mapCenter = [];
 }
 
 export const map = (state= mapCenter, action: IExtentAction) => {
-    
-    if(action.type === MapActions.EXTENT_CHANGE) {
-        return action.center.concat()
+
+    if (action.type === MapActions.EXTENT_CHANGE) {
+        return action.center.concat();
     }
 
     return state;
@@ -20,7 +19,7 @@ export const cursorPosition = (state= {}, action: ICursorPositionAction) => {
     switch (action.type) {
         case MapActions.POINTER_CHANGE :
             const {lon, lat, srid} = action;
-            return {lon, lat, srid}
+            return {lon, lat, srid};
         default:
             return state;
     }
