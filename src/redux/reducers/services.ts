@@ -1,4 +1,3 @@
-import { freeze } from "../../utils/immutable";
 import { SERVICE_ACTIONS, IServiceAction } from "../actions/service";
 const InitialServices = [];
 
