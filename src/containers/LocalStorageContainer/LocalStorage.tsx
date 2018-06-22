@@ -10,6 +10,8 @@ class LocalStorage extends React.Component<StorageProps> {
 
     render() {
         const {data, storeName} = this.props
+        console.log("deneme", storeName);
+        
         if(data !== undefined) {
             localStorage.setItem(storeName, data);
         }

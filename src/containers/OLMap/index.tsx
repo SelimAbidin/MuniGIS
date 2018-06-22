@@ -12,13 +12,13 @@ import {MapContext} from './MapContext'
 import Layer from "./Layers/Layer";
 import Layers from "./Layers";
 import { ServiceModel } from "../../redux/actions/service";
+import LayerContainer from "./Layers/LayerContainer";
 
 
 interface IOlProps {
     mousePointer: any;
     history: any;
     map: Array<number>;
-    services: Array<ServiceModel>;
     extentChange: (center: number[]) => void;
 }
 
@@ -45,6 +45,8 @@ class OLMap extends React.Component<IOlProps, any>  {
             lon = mapExtent[0]
             lat = mapExtent[1]
             zoom = mapExtent[2]
+            console.log("gitdiii");
+            
         }
 
         const content = this.content;
@@ -104,29 +106,23 @@ class OLMap extends React.Component<IOlProps, any>  {
 
     public render() {
 
-        const {children, services} = this.props
+        const {children} = this.props
         return ( <React.Fragment>
-                <div
-                        onContextMenu={this._onContextMenu}
-                        style={{width: "100%", height: "100%"}}
-                        ref={(r) => this.content = r} >
-                </div>
-                <MapContext.Provider value={ {map: this.map} } >
-                {children}
-                <Layers>
-                {services.map( (service:ServiceModel) => {
-                        return <Layer key={service.name} url={service.serviceURL} layers={service.layers} />;
-                    })}
-                </Layers>
-
-                </MapContext.Provider>
+                    <div
+                            onContextMenu={this._onContextMenu}
+                            style={{width: "100%", height: "100%"}}
+                            ref={(r) => this.content = r} >
+                    </div>
+                    <MapContext.Provider value={ {map: this.map} } >
+                        {children}
+                        <LayerContainer />
+                    </MapContext.Provider>
                 </React.Fragment>)
     }
 }
 
 const mapToProps = (state: any) => ({
-    services: state.services,
-    // map: state.map
+    map: state.map
 });
 
 const dispatchToState = (dispatch: Dispatch) => ({
