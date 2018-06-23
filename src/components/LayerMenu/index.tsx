@@ -1,9 +1,9 @@
 import {Button} from "primereact/components/button/Button";
-import {Toolbar} from "primereact/components/toolbar/Toolbar";
 import {Tooltip} from "primereact/components/tooltip/Tooltip";
 import {Tree} from "primereact/components/tree/Tree";
 import * as React from "react";
 import "./layermenu.css";
+import Toolbar from "../UI/Toolbar";
 
 interface ILayerMenuProps {
     onAddServiceClick?: React.MouseEventHandler<HTMLElement>;
@@ -25,7 +25,7 @@ class LayerMenu extends React.Component<ILayerMenuProps, any> {
         const {width} = this.state;
         const {onAddServiceClick, layers} = this.props;
         return <div className="layerMenu" style={{height: "100%", width: width + "px"}} >
-            <Toolbar className="" >
+            <Toolbar >
                 <Tooltip for="#layerAddButton" title="Add Service" tooltipPosition="right" />
                 <Button id="layerAddButton" onClick={onAddServiceClick} icon="fa-plus" />
             </Toolbar>

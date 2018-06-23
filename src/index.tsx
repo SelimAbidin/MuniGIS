@@ -15,6 +15,8 @@ import UIStateSwitcher from "./containers/UIStateSwitcher/";
 import "./init.css";
 import reducer from "./redux/reducers/";
 
+import Toolbar from "../src/components/UI/Toolbar/"
+
 const store = createStore(reducer);
 // https://demo.boundlessgeo.com/geoserver/ows
 const App = () => (
@@ -22,7 +24,8 @@ const App = () => (
         <Provider store={store} >
             <Router>
                 <React.Fragment>
-                    <MenuBarContainer />
+                    {/* <MenuBarContainer /> */}
+                    <Toolbar />
                         <div className="mapContent">
                             <LayerMenuContainer />
                             <OLMap>

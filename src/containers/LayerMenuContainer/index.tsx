@@ -12,7 +12,6 @@ const mapLayerData = (layers: object[]) => {
 };
 
 class LayerMenuContainer extends React.Component<any, any> {
-
     public render() {
         const {services, onAddServiceClick} = this.props;
         const mappedLayerData = mapLayerData(services);
