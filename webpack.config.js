@@ -48,12 +48,26 @@ module.exports = {
                 use:['babel-loader']
             },
             {
-                test:/\.css$/,
-                use:extractStyle.extract({
-                    fallback:'style-loader',
-                    use:'css-loader'
+                test: /\.s?css$/,
+                use:ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
                 })
             },
+            // {
+            //     test:/\.(css)$/,
+            //     use:extractStyle.extract({
+            //         use:'css-loader'
+            //     }),
+            //     test:/\.(scss)$/,
+            //     use:['sass-loader']
+            // },
+            // {
+            //     test:/\.scss$/,
+            //     use:extractStyle.extract({
+            //         use:'sass-loader'
+            //     })
+            // },
             { 
                 test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/, 
                 loader: "file-loader",
@@ -67,7 +81,7 @@ module.exports = {
     plugins: [
         // new BundleAnalyzerPlugin(),
         // new UglifyJsPlugin({sourceMap:true}),
-        extractStyle,
+        new ExtractTextPlugin("style/style.css"),
         // extractTiff,
         // new IgnorePlugin(/\.node_modules/)
     ]

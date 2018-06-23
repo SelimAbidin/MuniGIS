@@ -5,8 +5,10 @@ let initial: any = localStorage.getItem("services");
 try {
     initial = JSON.parse(initial);
 } catch (error) {
-    initial = [];
+    
 }
+
+if(!initial) initial = [];
 
 export const services = (state= initial, action: IServiceAction) => {
 
