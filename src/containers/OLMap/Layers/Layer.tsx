@@ -5,19 +5,24 @@ import {MapContext} from "../MapContext";
 
 class Layer extends React.Component<any, any> {
     public url: string;
+    private layer:TileLayer;
     // private layer: TileLayer;
     constructor(props) {
         super(props);
     }
 
     public getLayer(url: string): TileLayer {
-        return new TileLayer({
-            source: new TileWMS({
-              params: {LAYERS: "TestWS:polygons", TILED: true},
-              serverType: "geoserver",
-              url,
-            }),
-        });
+        
+        if(this.layer === undefined) {
+            this.layer = new TileLayer({
+                source: new TileWMS({
+                  params: {LAYERS: "TestWS:polygons", TILED: true},
+                  serverType: "geoserver",
+                  url,
+                }),
+            });
+        }
+       return this.layer
     }
 
     // public componentWillUpdate() {
@@ -38,7 +43,6 @@ class Layer extends React.Component<any, any> {
             source.updateParams({LAYERS: layers.join(",")});
             map.addLayer(service);
         }
-
         return null;
     }
 

@@ -5,15 +5,17 @@ import XYZ from "ol/source/xyz";
 import View from "ol/view";
 import * as React from "react";
 import {connect} from "react-redux";
-import { withRouter } from "react-router-dom";
 import {Dispatch} from "redux";
-import {setCoordinate, setExtent} from "../../redux/actions/map";
+import {setCoordinate} from "../../redux/actions/map";
 // import { IServiceModel } from "../../redux/actions/service";
 // import Layers from "./Layers";
 // import Layer from "./Layers/Layer";
 import LayerContainer from "./Layers/LayerContainer";
 import {MapContext} from "./MapContext";
+import MapHashPrinter from "./Utils/MapHashPrinter";
 
+import "ol/ol.css"
+// import "./map.css"
 interface IOlProps {
     mousePointer: any;
     history: any;
@@ -64,7 +66,6 @@ class OLMap extends React.Component<IOlProps, any>  {
         this.map = map;
         this.view = view;
         map.on("pointermove", this._onMouseMove.bind(this));
-        map.on("moveend", this._onMoveEnd.bind(this));
         this._onAnimationFrame();
 
         this.forceUpdate();
@@ -85,17 +86,9 @@ class OLMap extends React.Component<IOlProps, any>  {
         this.currentMousePointer = e.coordinate;
     }
 
-    public _onMoveEnd(e: any) {
-        const {history} = this.props;
-        const map = this.map;
-        const view = map.getView();
-        const center = view.getCenter();
-        const zoom = view.getZoom();
-        const adres = [...center, zoom];
-        const {extentChange} = this.props;
-        history.replace("@" + adres.join(","));
-        extentChange(adres);
-    }
+    // public _onMoveEnd(e: any) {
+       
+    // }
 
     public _onContextMenu(e: any) {
         e.preventDefault();
@@ -111,20 +104,15 @@ class OLMap extends React.Component<IOlProps, any>  {
                             ref={(r) => this.content = r} >
                     </div>
                     <MapContext.Provider value={ {map: this.map} } >
+                        <MapHashPrinter />
                         {children}
                         <LayerContainer />
                     </MapContext.Provider>
                 </React.Fragment>);
     }
 }
-
-const mapToProps = (state: any) => ({
-    map: state.map,
-});
-
 const dispatchToState = (dispatch: Dispatch) => ({
-    extentChange: (center: number[]) => dispatch( setExtent(center ) ),
     mousePointer: (coordinate: number[], epsg: string) => dispatch(setCoordinate(coordinate[0], coordinate[1], epsg)),
 });
 
-export default connect(mapToProps, dispatchToState)(withRouter(OLMap));
+export default connect(undefined, dispatchToState)(OLMap);

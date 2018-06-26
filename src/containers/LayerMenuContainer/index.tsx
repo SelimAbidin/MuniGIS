@@ -1,21 +1,21 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import LayerMenu from "../../components/LayerMenu";
 import {setUIState, STATES} from "../../redux/actions/uiState";
-
-const mapLayerData = (layers: object[]) => {
-    return layers.map((i: any) => ({
-        data: i.name,
-        label: i.name,
-    }));
-};
+import Toolbar from "../../components/UI/Toolbar";
+import Tree from "../../components/UI/Tree/LayerTree";
+import "./layermenu.css"
 
 class LayerMenuContainer extends React.Component<any, any> {
     public render() {
         const {services, onAddServiceClick} = this.props;
-        const mappedLayerData = mapLayerData(services);
-        return <LayerMenu layers={mappedLayerData} onAddServiceClick={onAddServiceClick} />;
+        return <div className="layerMenu" style={{height: "100%", width:200  + "px", borderRight:"solid 1px"}} >
+            <Toolbar >
+                <button id="layerAddButton" onClick={onAddServiceClick}  />
+            </Toolbar>
+            <Tree data={services} />
+        </div>;
+
     }
 }
 

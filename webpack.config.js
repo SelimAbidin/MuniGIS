@@ -22,7 +22,8 @@ module.exports = {
     devServer: {
         port: 9000,
         contentBase: join(__dirname, 'public'),
-        watchContentBase: true
+        watchContentBase: true,
+        compress:false
     },
 
     resolve: {

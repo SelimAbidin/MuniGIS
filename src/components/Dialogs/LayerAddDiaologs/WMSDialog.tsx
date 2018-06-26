@@ -1,8 +1,8 @@
 import WMSCapabilities from "ol/format/wmscapabilities";
-import {Button} from "primereact/components/button/Button";
-import {Dialog} from "primereact/components/dialog/Dialog";
-import {InputText} from "primereact/components/inputtext/InputText";
-import {ListBox} from "primereact/components/listbox/ListBox";
+// import {Button} from "primereact/components/button/Button";
+// import {Dialog} from "primereact/components/dialog/Dialog";
+// import {InputText} from "primereact/components/inputtext/InputText";
+// import {ListBox} from "primereact/components/listbox/ListBox";
 import * as React from "react";
 import LoadButton from "../../UI/LoadButton";
 import "./wmsLayer.css";
@@ -35,14 +35,14 @@ class WMSDialog extends React.Component<any, any> {
         const {onHide, onAddLayer} = this.props;
         const {serviceURL, selectedLayers, layers} = this.state;
 
-        const footer = <div>
-            <Button label="ADD" icon="fa-check" disabled={selectedLayers.length === 0} onClick={onAddLayer} />
-            <Button label="CANCEL" icon="fa-close" onClick={onHide} />
-        </div>;
+        // const footer = <div>
+        //     <Button label="ADD" icon="fa-check" disabled={selectedLayers.length === 0} onClick={onAddLayer} />
+        //     <Button label="CANCEL" icon="fa-close" onClick={onHide} />
+        // </div>;
 
         return (
                 <div className="content-section implementation">
-                    <Dialog header="Layer Add"
+                    {/* <Dialog header="Layer Add"
                             visible={true}
                             width="450px"
                             modal={true}
@@ -77,6 +77,8 @@ class WMSDialog extends React.Component<any, any> {
                         </div>
 
                     </Dialog>
+
+                     */}
                 </div>);
     }
 

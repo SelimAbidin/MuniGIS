@@ -1,0 +1,10 @@
+@import '../../theme.scss';
+
+.mg-layer-tree {
+    -webkit-padding-start: 4px;
+}
+
+.mg-layer-tree > li {
+    list-style: none;
+    font: $mg-font;
+}
