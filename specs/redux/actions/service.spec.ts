@@ -1,5 +1,6 @@
 import {assert} from 'chai'
-import {createWMSService, SERVICE_ACTIONS, IServiceAction, IServiceModel} from '../../../src/redux/actions/service'
+import {createWMSService, SERVICE_ACTIONS, IServiceAction} from '../../../src/redux/actions/service'
+import { IServiceModel } from '../../../src/data/serviceModel';
 
 describe('CreateWMS Action Object', () => {
     
@@ -9,7 +10,10 @@ describe('CreateWMS Action Object', () => {
             name: 'test',
             serviceURL: 'No URL Checking',
             layers: ['testingLayer'],
-        };
+            visibility: true,
+            visibleLayers: ['testingLayer'],
+            id:new Date().getTime()
+        }
 
         let object:IServiceAction = createWMSService(sampleObject.name, sampleObject.serviceURL, sampleObject.layers)
 

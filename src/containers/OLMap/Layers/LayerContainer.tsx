@@ -1,12 +1,12 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IServiceModel } from "../../../redux/actions/service";
+import { IServiceModel } from "../../../data/serviceModel";
 import Layer from "./Layer";
 
 const LayerContainer = ({services}: {services: IServiceModel[]}) => (
     <React.Fragment>
         {services.map( (service: IServiceModel) => {
-            return <Layer key={service.name} url={service.serviceURL} layers={service.layers} />;
+            return <Layer  service={service}  key={service.name} />;
         })}
     </React.Fragment>
 );

@@ -5,7 +5,7 @@ import {} from "../../";
 import {setUIState, STATES} from "../../redux/actions/uiState";
 
 import WMSDialog, {IWMSFormModel} from "../../components/Dialogs/LayerAddDiaologs/WMSDialog";
-import { createWMSService, IServiceAction, IServiceModel } from "../../redux/actions/service";
+import { createWMSService, IServiceAction } from "../../redux/actions/service";
 import "./style.css";
 
 export class WMSDialogContainer extends React.Component<any, any> {

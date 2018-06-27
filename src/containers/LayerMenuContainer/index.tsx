@@ -6,28 +6,26 @@ import Toolbar from "../../components/UI/Toolbar";
 import Tree from "../../components/UI/Tree/LayerTree";
 import {setUIState, STATES} from "../../redux/actions/uiState";
 import "./layermenu.css";
+import TreeContainer from "./TreeContainer";
 
 class LayerMenuContainer extends React.Component<any, any> {
     public render() {
-        const {services, onAddServiceClick} = this.props;
+        const {onAddServiceClick} = this.props;
+
         return <div className="layerMenu" style={{height: "100%", width: 200  + "px", borderRight: "solid 1px"}} >
             <Toolbar >
                 <Button id="layerAddButton" onClick={onAddServiceClick} primary  icon >
                 <Icon name="plus" />
                 </Button>
             </Toolbar>
-            <Tree data={services} />
+            <TreeContainer />
         </div>;
 
     }
 }
 
-const mapToProps = (state: any) => ({
-    services: state.services,
-});
-
 const dispatchToState = (dispatch: Dispatch) => ({
     onAddServiceClick : () => dispatch(setUIState(STATES.ADD_SERVICE)),
 });
 
-export default connect(mapToProps, dispatchToState)(LayerMenuContainer);
+export default connect(undefined, dispatchToState)(LayerMenuContainer);
