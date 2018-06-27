@@ -1,6 +1,5 @@
 import * as React from "react";
-import { List, Checkbox } from 'semantic-ui-react'
-
+import { Checkbox, List } from "semantic-ui-react";
 
 class LayerTreeNode extends React.Component {
 
@@ -11,7 +10,7 @@ class LayerTreeNode extends React.Component {
                     <List.Content className="mg-content" >
                         <List.Description>{children}</List.Description>
                     </List.Content>
-            </List.Item>
+            </List.Item>;
     }
 }
 

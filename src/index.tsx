@@ -1,7 +1,6 @@
 import "semantic-ui-css/semantic.min.css";
 import "./init.css";
 
-
 import * as React from "react";
 import {render} from "react-dom";
 import {Provider} from "react-redux";
@@ -14,8 +13,6 @@ import LocalStorageContainer from "./containers/LocalStorageContainer/LocalStora
 import OLMap from "./containers/OLMap/";
 import UIStateSwitcher from "./containers/UIStateSwitcher/";
 import reducer from "./redux/reducers/";
-
-
 
 const store = createStore(reducer);
 // https://demo.boundlessgeo.com/geoserver/ows
