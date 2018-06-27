@@ -6,6 +6,9 @@ import WMSCapabilities from "ol/format/wmscapabilities";
 import * as React from "react";
 import LoadButton from "../../UI/LoadButton";
 import "./wmsLayer.css";
+// import Dialog from "../../UI/dialog";
+import { Button, Header, Input, Modal, List, Form, Checkbox, CheckboxProps } from 'semantic-ui-react'
+
 
 export interface IWMSFormModel {
     serviceURL: string;
@@ -25,6 +28,7 @@ class WMSDialog extends React.Component<any, any> {
 
         this.state = {
             layers: [],
+            loading: false,
             selectedLayers: [],
             serviceURL: "http://localhost:8080/geoserver/TestWS/wms",
         };
@@ -33,7 +37,7 @@ class WMSDialog extends React.Component<any, any> {
     public render() {
 
         const {onHide, onAddLayer} = this.props;
-        const {serviceURL, selectedLayers, layers} = this.state;
+        const {serviceURL, selectedLayers, layers, loading} = this.state;
 
         // const footer = <div>
         //     <Button label="ADD" icon="fa-check" disabled={selectedLayers.length === 0} onClick={onAddLayer} />
@@ -42,43 +46,42 @@ class WMSDialog extends React.Component<any, any> {
 
         return (
                 <div className="content-section implementation">
-                    {/* <Dialog header="Layer Add"
-                            visible={true}
-                            width="450px"
-                            modal={true}
-                            footer={footer}
-                            onHide={onHide}>
-                        <div className="wmsInputContainer">
-                        <div >
-                            <span className="ui-float-label">
-                                <InputText
-                                    className="service-url-input"
-                                    name="float-input"
-                                    type="text"
-                                    onChange={this.onServiceURLChange}
-                                    value={serviceURL} />
-                                <label htmlFor="float-input" >WMS Service URL</label>
-                            </span>
-                        </div>
-                            <div>
-                                <LoadButton
-                                    ref={(r) => this.connectButton = r}
-                                    label="Connect" disabled={serviceURL.length === 0}
-                                    onClick={this.onClickConnect} />
-                            </div>
-                            <div>
-                                <ListBox
-                                    style={{width: "100%", minHeight: "50px"}}
-                                    options={layers}
-                                    multiple={true}
-                                    value={selectedLayers}
-                                    onChange={this.onLayerSelected} />
-                            </div>
-                        </div>
+                     <Modal open={true}  >
+                     <Modal.Header>ADD WNS LAYER</Modal.Header>
+                        <Modal.Content >
+                            
+                        <Form >
 
-                    </Dialog>
+                            <Form.Field>
+                                <label>First Name</label>
+                                <Input placeholder="WMS Service URL" value={serviceURL} onChange={this.onServiceURLChange} />
+                            </Form.Field>
+                            
+                            <Form.Field>
+                                <Button
+                                            loading={loading}
+                                            onClick={this.onClickConnect}
+                                            disabled={serviceURL.length === 0 || loading}
+                                            primary >Connect</Button>
+                            </Form.Field>
+                            
+                            <Form.Field style={{maxHeight:"150px", overflowY:"auto"}}>
+                                <List selection verticalAlign='middle'>
+                                {layers.map(i => (
+                                    <List.Item key={i.label} >
+                                        <Checkbox label={i.label} onChange={this.onLayerSelected} ></Checkbox>
+                                </List.Item>
+                                ))}
+                                </List>
+                            </Form.Field>
+                            </Form>
 
-                     */}
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button disabled={selectedLayers.length === 0} onClick={onAddLayer} primary>ADD</Button>
+                            <Button onClick={onHide}  negative>CANCEL</Button>
+                        </Modal.Actions>
+                    </Modal>
                 </div>);
     }
 
@@ -101,16 +104,18 @@ class WMSDialog extends React.Component<any, any> {
         this.setState({serviceURL});
     }
 
-    private onLayerSelected(e): void {
-        this.setState({selectedLayers: e.value});
+    private onLayerSelected(e:React.FormEvent,selectData:CheckboxProps): void {
+
+        if(selectData.checked) {
+            this.setState({selectedLayers: [...this.state.selectedLayers, selectData.label] });
+        } else {
+            this.setState({selectedLayers: this.state.selectedLayers.filter(i => i !== selectData.label) });
+        }
     }
 
     private onClickConnect(e: React.MouseEvent) {
 
-        this.setState({layers: []});
-        const connectButton = this.connectButton;
-        connectButton.setLoading();
-
+        this.setState({layers: [], loading:true})
         const {serviceURL} = this.state;
         const capabilities = "service=wms&version=1.3.0&request=GetCapabilities";
         const capabilitiesURL = [...serviceURL.split("/"), "wms"].join("/") + "?" + capabilities;
@@ -119,7 +124,6 @@ class WMSDialog extends React.Component<any, any> {
         .then((response) => response.text())
         .then((text: any) => {
 
-            connectButton.setDefault();
             const parser = new WMSCapabilities();
             const capability = parser.read(text);
 
@@ -129,10 +133,9 @@ class WMSDialog extends React.Component<any, any> {
                 return {label: i.Name, value: i.Name};
             });
 
-            this.setState({layers});
+            this.setState({layers, loading:false});
         }).catch(() => {
-
-            connectButton.setFailed();
+            this.setState({loading:false});
         });
     }
 

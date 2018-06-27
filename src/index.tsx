@@ -8,9 +8,11 @@ import LayerMenuContainer from "./containers/LayerMenuContainer";
 import LocalStorageContainer from "./containers/LocalStorageContainer/LocalStorageContainer";
 import OLMap from "./containers/OLMap/";
 import UIStateSwitcher from "./containers/UIStateSwitcher/";
-import "./init.css";
 import reducer from "./redux/reducers/";
 import Toolbar from "../src/components/UI/Toolbar/"
+import 'semantic-ui-css/semantic.min.css';
+
+import "./init.css";
 
 const store = createStore(reducer);
 // https://demo.boundlessgeo.com/geoserver/ows

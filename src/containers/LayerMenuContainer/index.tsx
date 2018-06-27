@@ -4,6 +4,7 @@ import {Dispatch} from "redux";
 import {setUIState, STATES} from "../../redux/actions/uiState";
 import Toolbar from "../../components/UI/Toolbar";
 import Tree from "../../components/UI/Tree/LayerTree";
+import { Button, Icon } from 'semantic-ui-react';
 import "./layermenu.css"
 
 class LayerMenuContainer extends React.Component<any, any> {
@@ -11,7 +12,9 @@ class LayerMenuContainer extends React.Component<any, any> {
         const {services, onAddServiceClick} = this.props;
         return <div className="layerMenu" style={{height: "100%", width:200  + "px", borderRight:"solid 1px"}} >
             <Toolbar >
-                <button id="layerAddButton" onClick={onAddServiceClick}  />
+                <Button id="layerAddButton" onClick={onAddServiceClick} primary  icon >
+                <Icon name="plus" />
+                </Button>
             </Toolbar>
             <Tree data={services} />
         </div>;

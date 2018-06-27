@@ -23,7 +23,7 @@ module.exports = {
         port: 9000,
         contentBase: join(__dirname, 'public'),
         watchContentBase: true,
-        compress:false
+        compress:true
     },
 
     resolve: {
@@ -55,32 +55,33 @@ module.exports = {
                     use: ['css-loader', 'sass-loader']
                 })
             },
-            // {
-            //     test:/\.(css)$/,
-            //     use:extractStyle.extract({
-            //         use:'css-loader'
-            //     }),
-            //     test:/\.(scss)$/,
-            //     use:['sass-loader']
-            // },
-            // {
-            //     test:/\.scss$/,
-            //     use:extractStyle.extract({
-            //         use:'sass-loader'
-            //     })
-            // },
             { 
-                test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/, 
+                test: /\.(eot|svg|png|gif)$/, 
                 loader: "file-loader",
                 options: {
-                    name: '/style/[name].[ext]',
+                    name: '/style/images/[name].[ext]',
+                }
+            },
+            { 
+                test: /\.(ttf|woff|woff2)$/,
+                loader: "url-loader",
+                options: {
+                    name: '/style/fonts/[name].[ext]',
+                    mimetype:'application/font-woff'
                 }
             }
+            // ,{ 
+            //     test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/, 
+            //     loader: "file-loader",
+            //     options: {
+            //         name: '/style/[name].[ext]',
+            //     }
+            // }
         ]
     },
     
     plugins: [
-        // new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin(),
         // new UglifyJsPlugin({sourceMap:true}),
         new ExtractTextPlugin("style/style.css"),
         // extractTiff,
