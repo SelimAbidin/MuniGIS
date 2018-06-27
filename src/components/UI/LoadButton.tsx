@@ -1,5 +1,3 @@
-import {Button} from "primereact/components/button/Button";
-import {ProgressSpinner} from "primereact/components/progressspinner/ProgressSpinner";
 import * as React from "react";
 import "./loadingButton.css";
 
@@ -47,7 +45,7 @@ export default class LoadButton extends React.Component<any, any> {
         }
 
         const {label} = this.props;
-        return <Button {...this.props} className={style} disabled={disabled}  icon={icon} >
-        </Button>;
+        return <button {...this.props} className={style} disabled={disabled}   >
+        </button>;
     }
 }

@@ -1,0 +1,14 @@
+@import '../../theme.scss';
+
+.mg-layer-tree {
+    display: flex;
+    flex-direction: column;
+}
+
+.mg-layer-tree .mg-list-item {
+    display: flex !important;
+}
+
+.mg-layer-tree .mg-content {
+    margin-left: 7px;
+}

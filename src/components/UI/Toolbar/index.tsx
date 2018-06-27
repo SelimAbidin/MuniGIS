@@ -1,17 +1,16 @@
-import * as React from "react"
-import "./toolbar.scss"
-
+import * as React from "react";
+import "./toolbar.scss";
 
 interface IToolbarProps {
-    children?:React.ReactNode
+    children?: React.ReactNode;
 }
 
 class Toolbar extends React.Component<IToolbarProps> {
-    public render () {
+    public render() {
         const {children} = this.props;
         return <div className="mg-toolbar">
         {children}
-        </div>
+        </div>;
     }
 }
 
