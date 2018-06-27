@@ -1,31 +1,20 @@
-import * as React from "react";
-import {MapContext} from "../MapContext";
-import { withRouter } from "react-router";
 import Map from "ol/map";
+import * as React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { setExtent } from "../../../redux/actions/map";
+import {MapContext} from "../MapContext";
 
 class MapHashPrinter extends React.Component<any, any> {
-    
-    private map:Map;
+
+    private map: Map;
     constructor(props) {
         super(props);
-        this.onMoveEnd = this.onMoveEnd.bind(this)
+        this.onMoveEnd = this.onMoveEnd.bind(this);
     }
 
-    private onRender(consumerValue:any) {
-        
-        const {map}:{map:Map} = consumerValue;
-        if(map) {
-            this.map = map;
-            map.un("moveend", this.onMoveEnd)
-            map.on("moveend", this.onMoveEnd);
-        }
-        return null
-    }
+    public onMoveEnd(e) {
 
-    onMoveEnd(e) {
-        
         const {history} = this.props;
         const map = this.map;
         const view = map.getView();
@@ -37,15 +26,26 @@ class MapHashPrinter extends React.Component<any, any> {
         extentChange(adres);
     }
 
-    render() {
+    public render() {
 
         return <MapContext.Consumer>
-            {v => this.onRender(v)}
-        </MapContext.Consumer>
+            {(v) => this.onRender(v)}
+        </MapContext.Consumer>;
+    }
+
+    private onRender(consumerValue: any) {
+
+        const {map}: {map: Map} = consumerValue;
+        if (map) {
+            this.map = map;
+            map.un("moveend", this.onMoveEnd);
+            map.on("moveend", this.onMoveEnd);
+        }
+        return null;
     }
 }
 
-const dispatchToState = dispatch => ({
+const dispatchToState = (dispatch) => ({
     extentChange: (center: number[]) => dispatch( setExtent(center ) ),
-})
-export default connect(undefined, dispatchToState)(withRouter(MapHashPrinter))
+});
+export default connect(undefined, dispatchToState)(withRouter(MapHashPrinter));

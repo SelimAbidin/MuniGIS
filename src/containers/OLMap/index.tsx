@@ -14,7 +14,7 @@ import LayerContainer from "./Layers/LayerContainer";
 import {MapContext} from "./MapContext";
 import MapHashPrinter from "./Utils/MapHashPrinter";
 
-import "ol/ol.css"
+import "ol/ol.css";
 // import "./map.css"
 interface IOlProps {
     mousePointer: any;
@@ -87,7 +87,7 @@ class OLMap extends React.Component<IOlProps, any>  {
     }
 
     // public _onMoveEnd(e: any) {
-       
+
     // }
 
     public _onContextMenu(e: any) {

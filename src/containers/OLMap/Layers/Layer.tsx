@@ -5,15 +5,15 @@ import {MapContext} from "../MapContext";
 
 class Layer extends React.Component<any, any> {
     public url: string;
-    private layer:TileLayer;
+    private layer: TileLayer;
     // private layer: TileLayer;
     constructor(props) {
         super(props);
     }
 
     public getLayer(url: string): TileLayer {
-        
-        if(this.layer === undefined) {
+
+        if (this.layer === undefined) {
             this.layer = new TileLayer({
                 source: new TileWMS({
                   params: {LAYERS: "TestWS:polygons", TILED: true},
@@ -22,7 +22,7 @@ class Layer extends React.Component<any, any> {
                 }),
             });
         }
-       return this.layer
+        return this.layer;
     }
 
     // public componentWillUpdate() {

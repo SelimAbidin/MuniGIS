@@ -4,11 +4,10 @@ import WMSCapabilities from "ol/format/wmscapabilities";
 // import {InputText} from "primereact/components/inputtext/InputText";
 // import {ListBox} from "primereact/components/listbox/ListBox";
 import * as React from "react";
+// import Dialog from "../../UI/dialog";
+import { Button, Checkbox, CheckboxProps, Form, Header, Input, List, Modal } from "semantic-ui-react";
 import LoadButton from "../../UI/LoadButton";
 import "./wmsLayer.css";
-// import Dialog from "../../UI/dialog";
-import { Button, Header, Input, Modal, List, Form, Checkbox, CheckboxProps } from 'semantic-ui-react'
-
 
 export interface IWMSFormModel {
     serviceURL: string;
@@ -49,14 +48,17 @@ class WMSDialog extends React.Component<any, any> {
                      <Modal open={true}  >
                      <Modal.Header>ADD WNS LAYER</Modal.Header>
                         <Modal.Content >
-                            
+
                         <Form >
 
                             <Form.Field>
                                 <label>First Name</label>
-                                <Input placeholder="WMS Service URL" value={serviceURL} onChange={this.onServiceURLChange} />
+                                <Input
+                                    placeholder="WMS Service URL"
+                                    value={serviceURL}
+                                    onChange={this.onServiceURLChange} />
                             </Form.Field>
-                            
+
                             <Form.Field>
                                 <Button
                                             loading={loading}
@@ -64,10 +66,10 @@ class WMSDialog extends React.Component<any, any> {
                                             disabled={serviceURL.length === 0 || loading}
                                             primary >Connect</Button>
                             </Form.Field>
-                            
-                            <Form.Field style={{maxHeight:"150px", overflowY:"auto"}}>
-                                <List selection verticalAlign='middle'>
-                                {layers.map(i => (
+
+                            <Form.Field style={{maxHeight: "150px", overflowY: "auto"}}>
+                                <List selection verticalAlign="middle">
+                                {layers.map((i) => (
                                     <List.Item key={i.label} >
                                         <Checkbox label={i.label} onChange={this.onLayerSelected} ></Checkbox>
                                 </List.Item>
@@ -104,18 +106,18 @@ class WMSDialog extends React.Component<any, any> {
         this.setState({serviceURL});
     }
 
-    private onLayerSelected(e:React.FormEvent,selectData:CheckboxProps): void {
+    private onLayerSelected(e: React.FormEvent, selectData: CheckboxProps): void {
 
-        if(selectData.checked) {
+        if (selectData.checked) {
             this.setState({selectedLayers: [...this.state.selectedLayers, selectData.label] });
         } else {
-            this.setState({selectedLayers: this.state.selectedLayers.filter(i => i !== selectData.label) });
+            this.setState({selectedLayers: this.state.selectedLayers.filter((i) => i !== selectData.label) });
         }
     }
 
     private onClickConnect(e: React.MouseEvent) {
 
-        this.setState({layers: [], loading:true})
+        this.setState({layers: [], loading: true});
         const {serviceURL} = this.state;
         const capabilities = "service=wms&version=1.3.0&request=GetCapabilities";
         const capabilitiesURL = [...serviceURL.split("/"), "wms"].join("/") + "?" + capabilities;
@@ -133,9 +135,9 @@ class WMSDialog extends React.Component<any, any> {
                 return {label: i.Name, value: i.Name};
             });
 
-            this.setState({layers, loading:false});
+            this.setState({layers, loading: false});
         }).catch(() => {
-            this.setState({loading:false});
+            this.setState({loading: false});
         });
     }
 

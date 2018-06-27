@@ -3,14 +3,14 @@ import {render} from "react-dom";
 import {Provider} from "react-redux";
 import { HashRouter as Router } from "react-router-dom";
 import {createStore} from "redux";
+import "semantic-ui-css/semantic.min.css";
+import Toolbar from "../src/components/UI/Toolbar/";
 import ActionBarContainer from "./containers/ActionBarContainer/";
 import LayerMenuContainer from "./containers/LayerMenuContainer";
 import LocalStorageContainer from "./containers/LocalStorageContainer/LocalStorageContainer";
 import OLMap from "./containers/OLMap/";
 import UIStateSwitcher from "./containers/UIStateSwitcher/";
 import reducer from "./redux/reducers/";
-import Toolbar from "../src/components/UI/Toolbar/"
-import 'semantic-ui-css/semantic.min.css';
 
 import "./init.css";
 

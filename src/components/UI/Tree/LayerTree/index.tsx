@@ -1,21 +1,20 @@
 import * as React from "react";
 // import 'rc-tree/assets/index.css';
-import "./layerTree.scss"
-import LayerTreeNode from "./LayerTreeNode"
+import "./layerTree.scss";
+import LayerTreeNode from "./LayerTreeNode";
 
-interface LayerTreeProps {
-    data:Array<any>;
+interface ILayerTreeProps {
+    data: any[];
 }
 
-class Tree extends React.PureComponent<LayerTreeProps> {
+class Tree extends React.PureComponent<ILayerTreeProps> {
 
-		render () {
-            const {data} = this.props;
-			return <ul className="mg-layer-tree">
-                {data.map((i,index)=> (<LayerTreeNode key={index}>{i.name}</LayerTreeNode>))}
-			</ul>
-		
-		}
+    public render() {
+        const {data} = this.props;
+        return <ul className="mg-layer-tree">
+            {data.map((i, index) => (<LayerTreeNode key={index}>{i.name}</LayerTreeNode>))}
+            </ul>;
+    }
 }
 
 export default Tree;
