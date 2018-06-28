@@ -12,6 +12,11 @@ import LocalStorageContainer from "./containers/LocalStorageContainer/LocalStora
 import OLMap from "./containers/OLMap/";
 import UIStateSwitcher from "./containers/UIStateSwitcher/";
 import {store} from "./data/store";
+import { setUIState, STATES } from "./redux/actions/uiState";
+
+const addWMLayer = () => {
+    store.dispatch(setUIState(STATES.ADD_SERVICE));
+};
 
 // https://demo.boundlessgeo.com/geoserver/ows
 const App = () => (
@@ -20,7 +25,7 @@ const App = () => (
             <Router>
                 <React.Fragment>
                     {/* <MenuBarContainer /> */}
-                    <Toolbar />
+                    <Toolbar  addWMLayer={addWMLayer} />
                         <div className="mapContent">
                             <LayerMenuContainer />
                             <OLMap>

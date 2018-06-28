@@ -14,7 +14,7 @@ html,body{
 
 .mapContent {
     width: 100%;
-    height: calc(100% - 61px);
+    height: calc(100% - 0px);
     display:flex;
 }
 
