@@ -22,6 +22,14 @@ export const services = (state= initial, action: IServiceAction) => {
             }
             return i;
         });
+    } else if (action.type === SERVICE_ACTIONS.SUB_LAYER_VISIBILITY) {
+
+        return state.map((i: IServiceModel) => {
+            if (i.id === action.service.id) {
+                return Object.assign({}, action.service);
+            }
+            return i;
+        });
     }
     return state;
 };

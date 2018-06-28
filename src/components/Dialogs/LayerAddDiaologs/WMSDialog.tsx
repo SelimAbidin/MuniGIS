@@ -6,12 +6,13 @@ import WMSCapabilities from "ol/format/wmscapabilities";
 import * as React from "react";
 // import Dialog from "../../UI/dialog";
 import { Button, Checkbox, CheckboxProps, Form, Header, Input, List, Modal } from "semantic-ui-react";
+import { ILayerModel } from "../../../data/serviceModel";
 import LoadButton from "../../UI/LoadButton";
 import "./wmsLayer.css";
 
 export interface IWMSFormModel {
     serviceURL: string;
-    layers: string[];
+    layers: ILayerModel[];
     name: string;
 }
 
@@ -37,11 +38,6 @@ class WMSDialog extends React.Component<any, any> {
 
         const {onHide, onAddLayer} = this.props;
         const {serviceURL, selectedLayers, layers, loading} = this.state;
-
-        // const footer = <div>
-        //     <Button label="ADD" icon="fa-check" disabled={selectedLayers.length === 0} onClick={onAddLayer} />
-        //     <Button label="CANCEL" icon="fa-close" onClick={onHide} />
-        // </div>;
 
         return (
                 <div className="content-section implementation">
@@ -89,11 +85,14 @@ class WMSDialog extends React.Component<any, any> {
 
     public getFormData(): IWMSFormModel {
 
-        const {serviceURL, selectedLayers}  = this.state;
+        const serviceURL: string = this.state.serviceURL;
+        const selectedLayers: string[] = this.state.selectedLayers;
+        const layers = selectedLayers.map((i: string): ILayerModel => ({layerName: i, visibility: true }) );
+
         const name: string = "Service Name " + Math.round(Math.random() * 999);
 
         const model: IWMSFormModel = {
-            layers: selectedLayers,
+            layers,
             name,
             serviceURL,
         };
@@ -117,7 +116,7 @@ class WMSDialog extends React.Component<any, any> {
 
     private onClickConnect(e: React.MouseEvent) {
 
-        this.setState({layers: [], loading: true});
+        this.setState({layers: [], selectedLayers: [], loading: true});
         const {serviceURL} = this.state;
         const capabilities = "service=wms&version=1.3.0&request=GetCapabilities";
         const capabilitiesURL = [...serviceURL.split("/"), "wms"].join("/") + "?" + capabilities;

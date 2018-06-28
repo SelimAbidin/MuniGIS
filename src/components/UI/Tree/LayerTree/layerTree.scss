@@ -9,6 +9,16 @@
     display: flex !important;
 }
 
-.mg-layer-tree .mg-content {
+.ui.list > .item > .content > .mg-sublist  {
+    margin-left: 5px;
+}
+
+.ui.list > .item > .content > .mg-sublist > .mg-sub-layer-item {
+    display: flex;
+    flex-direction: row;
+}
+
+.mg-layer-tree .mg-content, .mg-list-item-content {
     margin-left: 7px;
 }
+ 

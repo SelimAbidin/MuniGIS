@@ -9,9 +9,8 @@ describe('CreateWMS Action Object', () => {
         let sampleObject:IServiceModel = {
             name: 'test',
             serviceURL: 'No URL Checking',
-            layers: ['testingLayer'],
+            layers: [{layerName:"testingLayer", visibility:false}],
             visibility: true,
-            visibleLayers: ['testingLayer'],
             id:new Date().getTime()
         }
 

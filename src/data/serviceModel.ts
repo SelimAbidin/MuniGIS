@@ -1,8 +1,12 @@
 export interface IServiceModel {
     name: string;
-    layers: string[];
+    layers: ILayerModel[];
     serviceURL: string;
-    visibleLayers: string[];
     visibility: boolean;
     id: number;
+}
+
+export interface ILayerModel {
+    layerName: string;
+    visibility: boolean;
 }

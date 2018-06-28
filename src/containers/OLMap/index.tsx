@@ -1,21 +1,17 @@
 import TileLayer from "ol/layer/tile";
 import Map from "ol/map";
-import TileWMS from "ol/source/TileWMS";
 import XYZ from "ol/source/xyz";
-import View from "ol/view";
+import View from "ol/View";
 import * as React from "react";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
+import {store} from "../../data/store";
 import {setCoordinate} from "../../redux/actions/map";
-// import { IServiceModel } from "../../redux/actions/service";
-// import Layers from "./Layers";
-// import Layer from "./Layers/Layer";
 import LayerContainer from "./Layers/LayerContainer";
 import {MapContext} from "./MapContext";
 import MapHashPrinter from "./Utils/MapHashPrinter";
 
 import "ol/ol.css";
-// import "./map.css"
 interface IOlProps {
     mousePointer: any;
     history: any;
@@ -36,8 +32,7 @@ class OLMap extends React.Component<IOlProps, any>  {
 
     public componentDidMount() {
 
-        const mapExtent = this.props.map;
-
+        const mapExtent = store.getState().map;
         let lat = 0;
         let lon = 0;
         let zoom = 2;
@@ -85,10 +80,6 @@ class OLMap extends React.Component<IOlProps, any>  {
         this.moved = true;
         this.currentMousePointer = e.coordinate;
     }
-
-    // public _onMoveEnd(e: any) {
-
-    // }
 
     public _onContextMenu(e: any) {
         e.preventDefault();

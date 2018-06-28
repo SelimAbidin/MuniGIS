@@ -2,12 +2,13 @@ import {assert} from "chai";
 import { createWMSService, IServiceAction } from "../../../src/redux/actions/service";
 import {services} from "../../../src/redux/reducers/services"
 import * as deepFreeze from 'deep-freeze'
+import { ILayerModel } from "../../../src/data/serviceModel";
 
 describe.only('AddService', () => {
 
     let serviceName:string = "ServiceName"
     let mockServiceURL:string = "Belive or not i am a URL"
-    let layers:string[] = ['String']
+    let layers:ILayerModel[] = [{layerName:'String', visibility:true}]
 
     it('should return initial state (Empty Array) ', () => {
 

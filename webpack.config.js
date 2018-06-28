@@ -1,14 +1,9 @@
 const {join} = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const IgnorePlugin = require('webpack').IgnorePlugin
+const webpack = require('webpack')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-
-const extractStyle = new ExtractTextPlugin({
-    filename: 'style/style.css',
-    allChunks: true,
-})
 
 module.exports = {
     devtool: 'source-map',
@@ -23,7 +18,8 @@ module.exports = {
         port: 9000,
         contentBase: join(__dirname, 'public'),
         watchContentBase: true,
-        compress:true
+        compress:false,
+        hot: true
     },
 
     resolve: {
@@ -34,17 +30,17 @@ module.exports = {
         rules: [
             {
                 test:/\.(ts|tsx)$/,
-                // include:[
-                //     join(__dirname,'src')
-                // ],
+                include:[
+                    join(__dirname,'src')
+                ],
                 exclude: join(__dirname, 'node_modules'),
                 use:['babel-loader','ts-loader']
             },
             {
                 test:/\.(js|jsx)$/,
-                // include:[
-                //     join(__dirname,'src')
-                // ],
+                include:[
+                    join(__dirname,'src')
+                ],
                 exclude: join(__dirname, 'node_modules'),
                 use:['babel-loader']
             },
@@ -55,20 +51,6 @@ module.exports = {
                     use: ['css-loader', 'sass-loader']
                 })
             },
-            // {
-            //     test:/\.(css)$/,
-            //     use:extractStyle.extract({
-            //         use:'css-loader'
-            //     }),
-            //     test:/\.(scss)$/,
-            //     use:['sass-loader']
-            // },
-            // {
-            //     test:/\.scss$/,
-            //     use:extractStyle.extract({
-            //         use:'sass-loader'
-            //     })
-            // },
             { 
                 test: /\.(eot|svg|png|gif)$/, 
                 loader: "file-loader",
@@ -84,21 +66,14 @@ module.exports = {
                     mimetype:'application/font-woff'
                 }
             }
-            // ,{ 
-            //     test: /\.(ttf|eot|svg|woff|woff2|png|gif)$/, 
-            //     loader: "file-loader",
-            //     options: {
-            //         name: '/style/[name].[ext]',
-            //     }
-            // }
         ]
     },
     
     plugins: [
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin({
+        //     defaultSizes: ["stat", "parsed", "gzip"]
+        // }),
         // new UglifyJsPlugin({sourceMap:true}),
         new ExtractTextPlugin("style/style.css"),
-        // extractTiff,
-        // new IgnorePlugin(/\.node_modules/)
     ]
 }

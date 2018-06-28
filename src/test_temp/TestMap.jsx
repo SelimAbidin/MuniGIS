@@ -3,7 +3,7 @@ import TileLayer from "ol/layer/tile";
 import Map from "ol/map";
 import TileWMS from "ol/source/TileWMS";
 import XYZ from "ol/source/xyz";
-import View from "ol/view";
+import View from "ol/View";
 
 class TestMap extends React.Component {
 
