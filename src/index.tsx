@@ -24,7 +24,6 @@ const App = () => (
         <Provider store={store} >
             <Router>
                 <React.Fragment>
-                    {/* <MenuBarContainer /> */}
                     <Toolbar  addWMLayer={addWMLayer} />
                         <div className="mapContent">
                             <LayerMenuContainer />
@@ -35,8 +34,6 @@ const App = () => (
                     <ActionBarContainer />
                     <UIStateSwitcher />
                     <LocalStorageContainer />
-                    {/* <TestMap /> */}
-
                 </React.Fragment>
             </Router>
         </Provider>

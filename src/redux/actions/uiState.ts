@@ -1,9 +1,4 @@
 
-// export const STATES = {
-//     DEFAULT: 'DEFAULT',
-//     ADD_SERVICE: 'ADD_SERVICE'
-// }
-
 export enum STATES {
     DEFAULT = "DEFAULT",
     ADD_SERVICE = "ADD_SERVICE",

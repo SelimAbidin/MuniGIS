@@ -1,10 +1,5 @@
 import WMSCapabilities from "ol/format/wmscapabilities";
-// import {Button} from "primereact/components/button/Button";
-// import {Dialog} from "primereact/components/dialog/Dialog";
-// import {InputText} from "primereact/components/inputtext/InputText";
-// import {ListBox} from "primereact/components/listbox/ListBox";
 import * as React from "react";
-// import Dialog from "../../UI/dialog";
 import { Button, Checkbox, CheckboxProps, Form, Header, Input, List, Modal } from "semantic-ui-react";
 import { ILayerModel } from "../../../data/serviceModel";
 import LoadButton from "../../UI/LoadButton";
