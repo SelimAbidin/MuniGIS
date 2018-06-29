@@ -6,13 +6,14 @@ export interface IServiceAction {
 }
 
 export enum SERVICE_ACTIONS {
-    ADD_SERVICE = "ADD_SERVICE",
+    ADD_WMS_SERVICE = "ADD_WMS_SERVICE",
+    ADD_VECTOR_SERVICE = "ADD_VECTOR_SERVICE",
     UPDATE_SERVICE = "UPDATE_SERVICE",
     SUB_LAYER_VISIBILITY = "SUB_LAYER_VISIBILITY",
 }
 
 export const createWMSService = (name: string, serviceURL: string, layers: ILayerModel[] ): IServiceAction => {
-    const type: SERVICE_ACTIONS = SERVICE_ACTIONS.ADD_SERVICE;
+    const type: SERVICE_ACTIONS = SERVICE_ACTIONS.ADD_WMS_SERVICE;
 
     const visibility = true;
     const service: IServiceModel = {

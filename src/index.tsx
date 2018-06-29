@@ -15,7 +15,11 @@ import {store} from "./data/store";
 import { setUIState, STATES } from "./redux/actions/uiState";
 
 const addWMLayer = () => {
-    store.dispatch(setUIState(STATES.ADD_SERVICE));
+    store.dispatch(setUIState(STATES.ADD_WMS_SERVICE));
+};
+
+const addVectorLayer = () => {
+    store.dispatch(setUIState(STATES.ADD_VECTOR_SERVICE));
 };
 
 // https://demo.boundlessgeo.com/geoserver/ows
@@ -24,7 +28,10 @@ const App = () => (
         <Provider store={store} >
             <Router>
                 <React.Fragment>
-                    <Toolbar  addWMLayer={addWMLayer} />
+                    <Toolbar
+                        addWMLayer={addWMLayer}
+                        addVectorLayer={addVectorLayer}
+                         />
                         <div className="mapContent">
                             <LayerMenuContainer />
                             <OLMap>

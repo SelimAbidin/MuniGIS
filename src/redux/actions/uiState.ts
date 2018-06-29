@@ -1,7 +1,8 @@
 
 export enum STATES {
     DEFAULT = "DEFAULT",
-    ADD_SERVICE = "ADD_SERVICE",
+    ADD_WMS_SERVICE = "ADD_WMS_SERVICE",
+    ADD_VECTOR_SERVICE = "ADD_VECTOR_SERVICE",
 }
 
 export const UI_STATE = "UI_STATE";

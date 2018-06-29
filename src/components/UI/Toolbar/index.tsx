@@ -3,11 +3,12 @@ import { Button, Dropdown, Menu } from "semantic-ui-react";
 import "./toolbar.scss";
 interface IToolbarProps {
     addWMLayer: (e: React.MouseEvent<HTMLDivElement>) => void;
+    addVectorLayer: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 class Toolbar extends React.Component<IToolbarProps> {
     public render() {
-        const {addWMLayer} = this.props;
+        const {addWMLayer, addVectorLayer} = this.props;
         return <Menu size="mini" className="mg-toolbar">
                 <Dropdown item text="File">
                     <Dropdown.Menu>
@@ -18,6 +19,7 @@ class Toolbar extends React.Component<IToolbarProps> {
 
                 <Dropdown item text="Layers">
                     <Dropdown.Menu>
+                        <Dropdown.Item onClick={addVectorLayer} >ADD Vector Layer</Dropdown.Item>
                         <Dropdown.Item onClick={addWMLayer} >ADD WMS LAYER</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
