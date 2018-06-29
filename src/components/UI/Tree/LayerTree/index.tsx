@@ -19,9 +19,14 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
     }
 
     public render() {
+
         const {data} = this.props;
+
         return <List className="mg-layer-tree" style={{paddingLeft: "10px"}} >
-                {data.map((i, index) =>
+                {data
+                .concat()
+                .reverse()
+                .map((i, index) =>
                     (<LayerTreeNode
                         onSubLayerVisibilityChange={this.onSubLayerVisibilityChange}
                         onVisibilityChange={this.onVisibilityChange}

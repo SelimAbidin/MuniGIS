@@ -30,17 +30,17 @@ module.exports = {
         rules: [
             {
                 test:/\.(ts|tsx)$/,
-                include:[
-                    join(__dirname,'src')
-                ],
+                // include:[
+                //     join(__dirname,'src')
+                // ],
                 exclude: join(__dirname, 'node_modules'),
                 use:['babel-loader','ts-loader']
             },
             {
                 test:/\.(js|jsx)$/,
-                include:[
-                    join(__dirname,'src')
-                ],
+                // include:[
+                //     join(__dirname,'src')
+                // ],
                 exclude: join(__dirname, 'node_modules'),
                 use:['babel-loader']
             },

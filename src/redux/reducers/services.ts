@@ -22,6 +22,7 @@ export const services = (state= initial, action: IServiceAction) => {
             }
             return i;
         });
+
     } else if (action.type === SERVICE_ACTIONS.SUB_LAYER_VISIBILITY) {
 
         return state.map((i: IServiceModel) => {
@@ -29,7 +30,8 @@ export const services = (state= initial, action: IServiceAction) => {
                 return Object.assign({}, action.service);
             }
             return i;
-        });
+        }).concat();
     }
+
     return state;
 };

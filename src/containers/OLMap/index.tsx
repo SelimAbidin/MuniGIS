@@ -13,7 +13,7 @@ import MapHashPrinter from "./Utils/MapHashPrinter";
 
 import "ol/ol.css";
 interface IOlProps {
-    mousePointer: any;
+    mousePointer?: any;
     history: any;
     map: number[];
     extentChange: (center: number[]) => void;
@@ -70,7 +70,7 @@ class OLMap extends React.Component<IOlProps, any>  {
 
         if (this.moved) {
             const {mousePointer} = this.props;
-            mousePointer(this.currentMousePointer, this.view.getProjection().getCode());
+           // mousePointer(this.currentMousePointer, this.view.getProjection().getCode());
             this.moved = true;
         }
         requestAnimationFrame(this._onAnimationFrame);

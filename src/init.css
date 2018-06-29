@@ -10,13 +10,11 @@ html,body{
     flex-direction:column;
 }
 
-
 .mapContent {
     width: 100%;
     height: calc(100% - 0px);
     display:flex;
 }
-
 
 .ui-corner-all {
     -moz-border-radius:0px;

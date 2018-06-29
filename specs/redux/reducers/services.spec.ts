@@ -1,10 +1,10 @@
 import {assert} from "chai";
-import { createWMSService, IServiceAction } from "../../../src/redux/actions/service";
+import { createWMSService ,IServiceAction } from "../../../src/redux/actions/service";
 import {services} from "../../../src/redux/reducers/services"
 import * as deepFreeze from 'deep-freeze'
 import { ILayerModel } from "../../../src/data/serviceModel";
 
-describe.only('AddService', () => {
+describe('AddService', () => {
 
     let serviceName:string = "ServiceName"
     let mockServiceURL:string = "Belive or not i am a URL"
