@@ -30,7 +30,7 @@ export const services = (state= initial, action: IServiceAction) => {
                 return Object.assign({}, action.service);
             }
             return i;
-        }).concat();
+        });
     }
 
     return state;
