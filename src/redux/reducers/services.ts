@@ -10,7 +10,7 @@ try {
     initial = [];
 }
 if (!initial) { initial = []; }
-initial = [];
+
 export const services = (state= initial, action: IServiceAction) => {
 
     if (action.type === SERVICE_ACTIONS.ADD_WMS_SERVICE) {
