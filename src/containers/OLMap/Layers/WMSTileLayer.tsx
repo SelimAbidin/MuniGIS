@@ -7,7 +7,6 @@ import * as React from "react";
 import { ILayerModel, IServiceModel, SERVICE_TYPE } from "../../../data/serviceModel";
 import {MapContext} from "../MapContext";
 
-
 // TODO will be collected to in a sinle file. Maybe a new Abstract Layer for Layer Components?
 export interface ILayerProps {
     service: IServiceModel;
