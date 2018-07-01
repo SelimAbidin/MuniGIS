@@ -1,14 +1,27 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IServiceModel } from "../../../data/serviceModel";
-import Layer from "./Layer";
+import { IServiceModel, SERVICE_TYPE } from "../../../data/serviceModel";
+import WMSTileLayer from "./WMSTileLayer";
+import VectorTile from "./VectorLayer";
+
+
+const getLayerByType = (service:IServiceModel) => {
+
+    const {serviceType} = service;
+
+    if(serviceType === SERVICE_TYPE.GEOSERVER_WMS) {
+        return <WMSTileLayer service={service} key={service.id} />
+    } else if(serviceType === SERVICE_TYPE.VECTOR_LAYER) {
+        return <VectorTile service={service} key={service.id} />
+    }
+}
 
 const LayerContainer = ({services}: {services: IServiceModel[]}) => (
-    <React.Fragment>
+    <>
         {services.map( (service: IServiceModel) => {
-            return <Layer  service={service}  key={service.id} />;
+            return getLayerByType(service)
         })}
-    </React.Fragment>
+    </>
 );
 
 const mapStateToProps = (state) => ({

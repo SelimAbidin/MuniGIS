@@ -2,7 +2,7 @@ import { GEOM_TYPES } from "./Geometry";
 
 export enum SERVICE_TYPE {
     GEOSERVER_WMS = "GEOSERVER_WMS",
-    VECTOR_LAYER = "GEOSERVER_WMS",
+    VECTOR_LAYER = "VECTOR_LAYER",
 }
 
 export interface IServiceModel {
