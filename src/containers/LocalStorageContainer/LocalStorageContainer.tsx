@@ -1,13 +1,14 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { LOCAL_STORAGES } from "../../config";
 import LocalStorage from "./LocalStorage";
 
 const ServiceStorage = connect( (state: any) => ({services: state.services}) ) ((props: any) => (
-    <LocalStorage storeName="services" data={JSON.stringify(props.services)} />
+    <LocalStorage storeName={LOCAL_STORAGES.services} data={JSON.stringify(props.services)} />
 ));
 
 const MapExtentStorage = connect( (state: any) => ({map: state.map}) )((props: any) =>
-    (<LocalStorage storeName="mapExtent" data={props.map} />),
+    (<LocalStorage storeName={LOCAL_STORAGES.mapExtent} data={props.map} />),
 );
 
 class LocalStorageContainer extends React.Component<any> {

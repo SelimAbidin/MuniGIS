@@ -6,7 +6,7 @@ import Layer from "./Layer";
 const LayerContainer = ({services}: {services: IServiceModel[]}) => (
     <React.Fragment>
         {services.map( (service: IServiceModel) => {
-            return <Layer  service={service}  key={service.name} />;
+            return <Layer  service={service}  key={service.id} />;
         })}
     </React.Fragment>
 );

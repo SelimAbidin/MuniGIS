@@ -13,7 +13,6 @@ export interface IWMSFormModel {
 
 class WMSDialog extends React.Component<any, any> {
 
-    private connectButton: LoadButton;
     constructor(props) {
         super(props);
 
@@ -40,7 +39,7 @@ class WMSDialog extends React.Component<any, any> {
                      <Modal.Header>ADD WNS LAYER</Modal.Header>
                         <Modal.Content >
 
-                        <Form >
+                        <Form>
 
                             <Form.Field>
                                 <label>First Name</label>

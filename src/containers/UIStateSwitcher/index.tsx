@@ -1,6 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {STATES} from "../../redux/actions/uiState";
+import VectorLayerDialog from "./VectorLayerDialog";
 import WMSDialogContainer from "./WMSDialogContainer";
 
 class UIStateSwitcher extends React.Component<any, any> {
@@ -12,9 +13,7 @@ class UIStateSwitcher extends React.Component<any, any> {
         } else if (UIState === STATES.ADD_WMS_SERVICE) {
             return <WMSDialogContainer />;
         } else if (UIState === STATES.ADD_VECTOR_SERVICE) {
-            // return <WMSDialogContainer />;
-            alert("ADD_VECTOR_SERVICE Not implemented");
-            return null;
+            return <VectorLayerDialog />;
         }
     }
 }

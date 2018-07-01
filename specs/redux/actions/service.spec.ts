@@ -1,6 +1,6 @@
 import {assert} from 'chai'
 import {createWMSService, SERVICE_ACTIONS, IServiceAction} from '../../../src/redux/actions/service'
-import { IServiceModel } from '../../../src/data/serviceModel';
+import { IServiceModel, SERVICE_TYPE } from '../../../src/data/serviceModel';
 
 describe('CreateWMS Action Object', () => {
     
@@ -11,6 +11,7 @@ describe('CreateWMS Action Object', () => {
             serviceURL: 'No URL Checking',
             layers: [{layerName:"testingLayer", visibility:false}],
             visibility: true,
+            serviceType:SERVICE_TYPE.GEOSERVER_WMS,
             id:new Date().getTime()
         }
 

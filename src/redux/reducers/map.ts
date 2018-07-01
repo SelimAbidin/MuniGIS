@@ -1,6 +1,7 @@
+import { LOCAL_STORAGES } from "../../config";
 import {ICursorPositionAction, IExtentAction, MapActions} from "../actions/map";
 
-const storage = localStorage.getItem("mapExtent");
+const storage = localStorage.getItem(LOCAL_STORAGES.mapExtent);
 let mapCenter;
 if (storage) {
     mapCenter = storage.split(",").map((i) => parseFloat(i));

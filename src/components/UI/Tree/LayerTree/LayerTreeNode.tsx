@@ -44,7 +44,7 @@ class LayerTreeNode extends React.Component<ILayerTreeNodeProp> {
 
         const {data}: {data: IServiceModel} = this.props;
         const {layers} = data;
-        if (layers.length > 1) {
+        if (Array.isArray(layers) && layers.length > 1) {
             return layers.map((layer) => (
                 <List.Item className="mg-sub-layer-item" key={layer.layerName} >
                     <Checkbox checked={layer.visibility} onChange={ (e, cb) => (
