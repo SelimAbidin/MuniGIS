@@ -41,8 +41,16 @@ class WMSDialog extends React.Component<any, any> {
 
                         <Form>
 
+                        <Form.Field>
+                        <label>URL</label>
+                        <Input
+                            placeholder="WMS Service URL"
+                            value={serviceURL}
+                            onChange={this.onServiceURLChange} />
+                        </Form.Field>
+
                             <Form.Field>
-                                <label>First Name</label>
+                                <label>URL</label>
                                 <Input
                                     placeholder="WMS Service URL"
                                     value={serviceURL}

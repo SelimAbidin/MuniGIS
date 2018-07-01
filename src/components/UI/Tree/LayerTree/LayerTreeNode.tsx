@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Checkbox, CheckboxProps, List } from "semantic-ui-react";
 import { IServiceModel } from "../../../../data/serviceModel";
+import { Draggable } from 'react-beautiful-dnd';
 
 export interface ILayerTreeNodeProp {
     data: IServiceModel;
@@ -17,19 +18,32 @@ class LayerTreeNode extends React.Component<ILayerTreeNodeProp> {
     }
 
     public render() {
+        
         const {data}: {data: IServiceModel} = this.props;
 
-        return  <List.Item className="mg-list-item" >
-                    <Checkbox checked={data.visibility} className="mg-checkbox"  onChange={this.onChange} />
-                    <List.Content className="mg-content" >
-                        <List.Description>{data.name}</List.Description>
+        return <Draggable key={data.id} draggableId={data.id} >
+                {
+                    (provided, snapshot) => {
+                       return  <div 
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps} >
+                            <List.Item className="mg-list-item" >
+                                <Checkbox checked={data.visibility} className="mg-checkbox"  onChange={this.onChange} />
+                                <List.Content className="mg-content" >
+                                    <List.Description>{data.name}</List.Description>
+                                    <List.List className="mg-sublist">
+                                        { this.loadSublayers()}
+                                    </List.List>
+                                </List.Content>
+                            </List.Item>
+                        </div>
 
-                        <List.List className="mg-sublist">
-                            { this.loadSublayers()}
-                        </List.List>
-
-                    </List.Content>
-            </List.Item>;
+                    }
+                }
+            
+                
+        </Draggable>
     }
 
     private onChangeSubLayerVisibility(
