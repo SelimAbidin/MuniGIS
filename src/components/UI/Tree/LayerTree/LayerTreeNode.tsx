@@ -1,7 +1,7 @@
 import * as React from "react";
+import { Draggable } from "react-beautiful-dnd";
 import { Checkbox, CheckboxProps, List } from "semantic-ui-react";
 import { IServiceModel } from "../../../../data/serviceModel";
-import { Draggable } from 'react-beautiful-dnd';
 
 export interface ILayerTreeNodeProp {
     data: IServiceModel;
@@ -18,13 +18,13 @@ class LayerTreeNode extends React.Component<ILayerTreeNodeProp> {
     }
 
     public render() {
-        
+
         const {data}: {data: IServiceModel} = this.props;
 
         return <Draggable key={data.id} draggableId={data.id} >
                 {
                     (provided, snapshot) => {
-                       return  <div 
+                       return  <div
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps} >
@@ -37,13 +37,12 @@ class LayerTreeNode extends React.Component<ILayerTreeNodeProp> {
                                     </List.List>
                                 </List.Content>
                             </List.Item>
-                        </div>
+                        </div>;
 
                     }
                 }
-            
-                
-        </Draggable>
+
+        </Draggable>;
     }
 
     private onChangeSubLayerVisibility(

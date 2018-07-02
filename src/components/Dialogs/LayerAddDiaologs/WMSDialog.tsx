@@ -25,14 +25,14 @@ class WMSDialog extends React.Component<any, any> {
             loading: false,
             selectedLayers: [],
             serviceName: "",
-            serviceURL: "http://localhost:8080/geoserver/TestWS/wms"
+            serviceURL: "http://localhost:8080/geoserver/TestWS/wms",
         };
     }
 
     public render() {
 
         const {onHide, onAddLayer} = this.props;
-        const {serviceName,serviceURL, selectedLayers, layers, loading} = this.state;
+        const {serviceName, serviceURL, selectedLayers, layers, loading} = this.state;
 
         return (
                 <div className="content-section implementation">
@@ -88,7 +88,7 @@ class WMSDialog extends React.Component<any, any> {
 
     public getFormData(): IWMSFormModel {
 
-        const {serviceURL,serviceName} = this.state;
+        const {serviceURL, serviceName} = this.state;
         const selectedLayers: string[] = this.state.selectedLayers;
         const layers = selectedLayers.map((i: string): ILayerModel => ({layerName: i, visibility: true }) );
 
@@ -103,8 +103,8 @@ class WMSDialog extends React.Component<any, any> {
         return model;
     }
 
-    private onServiceNameUpdate(e:any){
-        const serviceName:string = e.target.value;
+    private onServiceNameUpdate(e: any) {
+        const serviceName: string = e.target.value;
         this.setState({serviceName});
     }
 

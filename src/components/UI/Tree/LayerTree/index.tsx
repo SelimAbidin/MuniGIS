@@ -1,9 +1,9 @@
 import * as React from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { List } from "semantic-ui-react";
 import { IServiceModel } from "../../../../data/serviceModel";
 import "./layerTree.scss";
 import LayerTreeNode from "./LayerTreeNode";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 interface ILayerTreeProps {
     data: any[];
@@ -11,16 +11,14 @@ interface ILayerTreeProps {
     onSubNodeChange: (IServiceModel: IServiceModel, layerName: string, visibility: boolean) => void;
 }
 
+const getListStyle = (b: boolean) => {
 
-const getListStyle = (b:boolean) => {
-
-    if(!b) {
-        return {}
+    if (!b) {
+        return {};
     } else {
-        return {backgroundColor:"#ff0000"}
+        return {backgroundColor: "#ff0000"};
     }
-}
-
+};
 
 class LayerTree extends React.PureComponent<ILayerTreeProps> {
 
@@ -30,23 +28,20 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
         this.onSubLayerVisibilityChange = this.onSubLayerVisibilityChange.bind(this);
     }
 
-    onDragEnd(result) {
+    public onDragEnd(result) {
 
         if (!result.destination) {
             return;
         }
-
-        console.log(result);
-        
     }
 
     public render() {
 
         const {data} = this.props;
-        
+
         return <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="droppable">
-                       
+
                         { (provided, snapshot) => (
 
                             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} >
@@ -55,38 +50,21 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
                                 {data
                                     .concat()
                                     .reverse()
-                                    .map((service:IServiceModel) => {
+                                    .map((service: IServiceModel) => {
 
                                         return <LayerTreeNode
                                                 onSubLayerVisibilityChange={this.onSubLayerVisibilityChange}
                                                 onVisibilityChange={this.onVisibilityChange}
                                                 data={service}
-                                                key={service.id} />
-
-                                        // return  <Draggable key={service.id} draggableId={service.id} index={index}>
-                                        //      {(provided, snapshot) => {
-                                               
-                                        //        return <div  ref={provided.innerRef}
-                                        //                         {...provided.draggableProps}
-                                        //                         {...provided.dragHandleProps}
-                                        //                         // onSubLayerVisibilityChange={this.onSubLayerVisibilityChange}
-                                        //                         // onVisibilityChange={this.onVisibilityChange}
-                                        //                         data={service}
-                                        //                         key={service.id} >{service.name}</div>
-                                        //     }
-                                        // }
-                                        // </Draggable>
-
-                                            
+                                                key={service.id} />;
                                         })}
-
                             </List>
 
                             </ div>
                         ) }
                     </Droppable>
-                </DragDropContext>
-           
+                </DragDropContext>;
+
     }
 
     private onVisibilityChange(serviceModel: IServiceModel) {
