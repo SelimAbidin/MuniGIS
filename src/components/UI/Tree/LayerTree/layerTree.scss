@@ -1,12 +1,18 @@
 @import '../../theme.scss';
 
-.mg-layer-tree {
+.ui.list.mg-layer-tree {
     display: flex;
     flex-direction: column;
+    margin: 1em 0px 0px 1em;
 }
 
 .mg-layer-tree .mg-list-item {
     display: flex !important;
+}
+
+.mg-layer-tree .mg-list-item .mg-node-fold-button {
+    margin-left: calc(-1.18em  - 0.25em);
+    cursor: pointer;
 }
 
 .ui.list > .item > .content > .mg-sublist  {
