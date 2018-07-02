@@ -15,23 +15,24 @@ class WMSDialog extends React.Component<any, any> {
 
     constructor(props) {
         super(props);
-
         this.onServiceURLChange = this.onServiceURLChange.bind(this);
         this.onClickConnect = this.onClickConnect.bind(this);
         this.onLayerSelected = this.onLayerSelected.bind(this);
+        this.onServiceNameUpdate = this.onServiceNameUpdate.bind(this);
 
         this.state = {
             layers: [],
             loading: false,
             selectedLayers: [],
-            serviceURL: "http://localhost:8080/geoserver/TestWS/wms",
+            serviceName: "",
+            serviceURL: "http://localhost:8080/geoserver/TestWS/wms"
         };
     }
 
     public render() {
 
         const {onHide, onAddLayer} = this.props;
-        const {serviceURL, selectedLayers, layers, loading} = this.state;
+        const {serviceName,serviceURL, selectedLayers, layers, loading} = this.state;
 
         return (
                 <div className="content-section implementation">
@@ -41,13 +42,13 @@ class WMSDialog extends React.Component<any, any> {
 
                         <Form>
 
-                        <Form.Field>
-                        <label>URL</label>
-                        <Input
-                            placeholder="WMS Service URL"
-                            value={serviceURL}
-                            onChange={this.onServiceURLChange} />
-                        </Form.Field>
+                            <Form.Field>
+                                <label>Service Name</label>
+                                <Input
+                                    placeholder="Enter Service Name"
+                                    value={serviceName}
+                                    onChange={this.onServiceNameUpdate} />
+                            </Form.Field>
 
                             <Form.Field>
                                 <label>URL</label>
@@ -87,11 +88,11 @@ class WMSDialog extends React.Component<any, any> {
 
     public getFormData(): IWMSFormModel {
 
-        const serviceURL: string = this.state.serviceURL;
+        const {serviceURL,serviceName} = this.state;
         const selectedLayers: string[] = this.state.selectedLayers;
         const layers = selectedLayers.map((i: string): ILayerModel => ({layerName: i, visibility: true }) );
 
-        const name: string = "Service Name " + Math.round(Math.random() * 999);
+        const name: string = serviceName;
 
         const model: IWMSFormModel = {
             layers,
@@ -100,6 +101,11 @@ class WMSDialog extends React.Component<any, any> {
         };
 
         return model;
+    }
+
+    private onServiceNameUpdate(e:any){
+        const serviceName:string = e.target.value;
+        this.setState({serviceName});
     }
 
     private onServiceURLChange(e): void {
