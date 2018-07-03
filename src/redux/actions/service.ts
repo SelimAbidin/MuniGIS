@@ -1,3 +1,4 @@
+import { Action, AnyAction } from "redux";
 import { GEOM_TYPES } from "../../data/Geometry";
 import { ILayerModel, IServiceModel, SERVICE_TYPE } from "../../data/serviceModel";
 
@@ -6,11 +7,17 @@ export interface IServiceAction {
     service: IServiceModel;
 }
 
+export interface IServiceSwipeOrderAction extends Action {
+    serviceID: number;
+    step: number;
+}
+
 export enum SERVICE_ACTIONS {
     ADD_WMS_SERVICE = "ADD_WMS_SERVICE",
     ADD_VECTOR_SERVICE = "ADD_VECTOR_SERVICE",
     UPDATE_SERVICE = "UPDATE_SERVICE",
     SUB_LAYER_VISIBILITY = "SUB_LAYER_VISIBILITY",
+    SWIPE_SERVICE_ORDER = "SWIPE_SERVICE_ORDER",
 }
 
 export const createWMSService = (name: string, serviceURL: string, layers: ILayerModel[] ): IServiceAction => {
@@ -68,4 +75,17 @@ export const updateSublayerVisibility = (   service: IServiceModel,
 
     const action: IServiceAction = { service: Object.assign({}, service, {layers: newLayers} ), type};
     return action;
+};
+
+/**
+ *
+ * @param serviceID
+ * @param step swipe step from the current point (-n to n)
+ */
+export const swipeServiceOrder = (serviceID: number, step: number): IServiceSwipeOrderAction => {
+    return {
+        serviceID,
+        step,
+        type: SERVICE_ACTIONS.SWIPE_SERVICE_ORDER,
+    };
 };

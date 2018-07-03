@@ -8,6 +8,7 @@ import LayerTreeNode from "./LayerTreeNode";
 interface ILayerTreeProps {
     data: any[];
     onNodeChange: (IServiceModel: IServiceModel) => void;
+    onServiceDragEnd: (IServiceModel: any) => void;
     onSubNodeChange: (IServiceModel: IServiceModel, layerName: string, visibility: boolean) => void;
 }
 
@@ -24,15 +25,19 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
 
     constructor(p) {
         super(p);
-        this.onVisibilityChange = this.onVisibilityChange.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
         this.onSubLayerVisibilityChange = this.onSubLayerVisibilityChange.bind(this);
+        this.onVisibilityChange = this.onVisibilityChange.bind(this);
     }
 
-    public onDragEnd(result) {
+    public onDragEnd(result: any) {
 
         if (!result.destination) {
             return;
         }
+
+        const {onServiceDragEnd} = this.props;
+        onServiceDragEnd(result);
     }
 
     public render() {
@@ -48,8 +53,6 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
                              <List  className="mg-layer-tree" style={{paddingLeft: "10px"}}  >
 
                                 {data
-                                    .concat()
-                                    .reverse()
                                     .map((service: IServiceModel) => {
 
                                         return <LayerTreeNode
@@ -59,7 +62,6 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
                                                 key={service.id} />;
                                         })}
                             </List>
-
                             </ div>
                         ) }
                     </Droppable>
