@@ -1,9 +1,19 @@
 @import '../../theme.scss';
 
+.mg-tree-list-container{
+    height: 100%;
+    padding: 1em 0px 0px 1em;
+    box-sizing: border-box;
+}
+
+.mg-tree-list-container.drag-hover{
+    border: dashed 4px #eeeeee;
+    background-color: #888888;
+}
+
 .ui.list.mg-layer-tree {
     display: flex;
     flex-direction: column;
-    margin: 1em 0px 0px 1em;
 }
 
 .mg-layer-tree .mg-list-item {

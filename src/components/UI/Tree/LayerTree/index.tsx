@@ -12,12 +12,11 @@ interface ILayerTreeProps {
     onSubNodeChange: (IServiceModel: IServiceModel, layerName: string, visibility: boolean) => void;
 }
 
-const getListStyle = (b: boolean) => {
-
+const getListContainerStyle = (b: boolean) => {
     if (!b) {
-        return {};
+        return "mg-tree-list-container";
     } else {
-        return {backgroundColor: "#ff0000"};
+        return "mg-tree-list-container drag-hover";
     }
 };
 
@@ -49,7 +48,7 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
 
                         { (provided, snapshot) => (
 
-                            <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} >
+                            <div ref={provided.innerRef} className={getListContainerStyle(snapshot.isDraggingOver)} >
                              <List  className="mg-layer-tree" style={{paddingLeft: "10px"}}  >
 
                                 {data
