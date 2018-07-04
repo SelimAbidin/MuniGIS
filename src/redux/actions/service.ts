@@ -16,6 +16,7 @@ export enum SERVICE_ACTIONS {
     ADD_WMS_SERVICE = "ADD_WMS_SERVICE",
     ADD_VECTOR_SERVICE = "ADD_VECTOR_SERVICE",
     UPDATE_SERVICE = "UPDATE_SERVICE",
+    DELETE_SERVICE = "DELETE_SERVICE",
     SUB_LAYER_VISIBILITY = "SUB_LAYER_VISIBILITY",
     SWIPE_SERVICE_ORDER = "SWIPE_SERVICE_ORDER",
 }
@@ -55,6 +56,12 @@ export const createVectorLayer = (name: string, geomType: GEOM_TYPES ): IService
 
 export const updateService = (service: IServiceModel): IServiceAction => {
     const type: SERVICE_ACTIONS = SERVICE_ACTIONS.UPDATE_SERVICE;
+    const action: IServiceAction = {service, type};
+    return action;
+};
+
+export const deleteService = (service: IServiceModel): IServiceAction => {
+    const type: SERVICE_ACTIONS = SERVICE_ACTIONS.DELETE_SERVICE;
     const action: IServiceAction = {service, type};
     return action;
 };

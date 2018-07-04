@@ -2,10 +2,15 @@ import * as React from "react";
 import { connect } from "react-redux";
 import LayerTree from "../../components/UI/Tree/LayerTree";
 import { IServiceModel } from "../../data/serviceModel";
-import { swipeServiceOrder, updateService, updateSublayerVisibility } from "../../redux/actions/service";
+import { swipeServiceOrder, updateService, updateSublayerVisibility, deleteService } from "../../redux/actions/service";
 
-const TreeContainer = ({services, onNodeChange, onSubNodeChange, onServiceDragEnd}) => (
-    <LayerTree onNodeChange={onNodeChange} onSubNodeChange={onSubNodeChange} data={services.concat().reverse()} onServiceDragEnd={onServiceDragEnd}  />);
+const TreeContainer = ({services, onNodeChange,onDeleteService, onSubNodeChange, onServiceDragEnd}) => (
+    <LayerTree
+        requestServiceDelete={onDeleteService}
+        onNodeChange={onNodeChange}
+        onSubNodeChange={onSubNodeChange}
+        data={services.concat().reverse()}
+        onServiceDragEnd={onServiceDragEnd}  />);
 
 const mapStateToProps = (state) => ({
     services: state.services,
@@ -13,6 +18,7 @@ const mapStateToProps = (state) => ({
 
 const dispatchToState = (dispatch) => ({
     onNodeChange: (service: IServiceModel) => dispatch(updateService(service)),
+    onDeleteService: (service: IServiceModel) => dispatch(deleteService(service)),    
     onServiceDragEnd: (dragEndEvent: any) => {
         const serviceID: number = dragEndEvent.draggableId;
         // Services are reversed on Tree, so index needs to be reversed back to do correct calculation

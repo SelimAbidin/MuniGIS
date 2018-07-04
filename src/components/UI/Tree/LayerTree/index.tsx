@@ -8,6 +8,7 @@ import LayerTreeNode from "./LayerTreeNode";
 interface ILayerTreeProps {
     data: any[];
     onNodeChange: (IServiceModel: IServiceModel) => void;
+    requestServiceDelete: (IServiceModel: IServiceModel) => void;
     onServiceDragEnd: (IServiceModel: any) => void;
     onSubNodeChange: (IServiceModel: IServiceModel, layerName: string, visibility: boolean) => void;
 }
@@ -41,9 +42,9 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
 
     public render() {
 
-        const {data} = this.props;
+        const {data,requestServiceDelete} = this.props;
 
-        return <DragDropContext onDragEnd={this.onDragEnd}>
+        return <DragDropContext onDragEnd={this.onDragEnd} >
                     <Droppable droppableId="droppable">
 
                         { (provided, snapshot) => (
@@ -55,6 +56,7 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
                                     .map((service: IServiceModel) => {
 
                                         return <LayerTreeNode
+                                                requestServiceDelete={requestServiceDelete}
                                                 onSubLayerVisibilityChange={this.onSubLayerVisibilityChange}
                                                 onVisibilityChange={this.onVisibilityChange}
                                                 data={service}
