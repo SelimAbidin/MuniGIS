@@ -25,8 +25,8 @@ export const services = (state: IServiceModel[]= initial, action: Action) => {
         return [...state, Object.assign({}, (action as IServiceAction).service)];
     } else if (action.type === SERVICE_ACTIONS.DELETE_SERVICE) {
         const service = (action as IServiceAction).service;
-        return state.filter((s:IServiceModel) => s.id !== service.id);
-    }else if (action.type === SERVICE_ACTIONS.UPDATE_SERVICE) {
+        return state.filter((s: IServiceModel) => s.id !== service.id);
+    } else if (action.type === SERVICE_ACTIONS.UPDATE_SERVICE) {
         const service = (action as IServiceAction).service;
         return state.map((i: IServiceModel) => {
             if (i.id === service.id) {

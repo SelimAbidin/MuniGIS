@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const ContextMenu = ({children,id}) => (<div id={id}>
+const ContextMenu = ({children, id}) => (<div id={id}>
                                             {children}
-                                        </div>)
+                                        </div>);
 export default ContextMenu;

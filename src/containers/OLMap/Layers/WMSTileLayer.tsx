@@ -13,7 +13,7 @@ export interface ILayerProps {
 class WMSTileLayer extends React.Component<ILayerProps, any> {
     public url: string;
     private layer: any;
-    private map:Map;
+    private map: Map;
     constructor(props) {
         super(props);
     }
@@ -34,7 +34,7 @@ class WMSTileLayer extends React.Component<ILayerProps, any> {
 
     public componentWillUnmount() {
         const map = this.map;
-        if(map && this.layer) {
+        if (map && this.layer) {
             map.removeLayer(this.layer);
         }
     }
@@ -60,7 +60,7 @@ class WMSTileLayer extends React.Component<ILayerProps, any> {
         )}
          </ MapContext.Consumer>;
     }
-    
+
     private onGeoserverWMSRender(map: Map) {
 
         const {serviceURL, layers, visibility} = this.props.service;
@@ -71,7 +71,7 @@ class WMSTileLayer extends React.Component<ILayerProps, any> {
 
         const service = this.getLayer(serviceURL);
         map.removeLayer(service);
-        
+
         if (visibility === true) {
             const source: any = service.getSource();
             const visibileLayers: ILayerModel[] = layers.filter((l: ILayerModel) => l.visibility);
@@ -82,7 +82,7 @@ class WMSTileLayer extends React.Component<ILayerProps, any> {
                     .join(",")});
 
                 // console.log(source.params_);
-                
+
                 map.addLayer(service);
             }
 

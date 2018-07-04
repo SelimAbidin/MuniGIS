@@ -42,7 +42,7 @@ class LayerTree extends React.PureComponent<ILayerTreeProps> {
 
     public render() {
 
-        const {data,requestServiceDelete} = this.props;
+        const {data, requestServiceDelete} = this.props;
 
         return <DragDropContext onDragEnd={this.onDragEnd} >
                     <Droppable droppableId="droppable">

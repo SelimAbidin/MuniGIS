@@ -56,7 +56,7 @@ class LayerTreeNode extends React.Component<ILayerTreeNodeProp> {
 
                             </List.Item>
                             </ContextMenu>
-                            
+
                             <ContextListMenu as={contextID}>
                                 <Menu>
                                     <Menu.Item onClick={this.onDeleteService} >Delete Service</Menu.Item>
@@ -70,11 +70,11 @@ class LayerTreeNode extends React.Component<ILayerTreeNodeProp> {
         </Draggable>;
     }
 
-    private onDeleteService(e:React.MouseEvent) {
-        const {requestServiceDelete,data} = this.props;
+    private onDeleteService(e: React.MouseEvent) {
+        const {requestServiceDelete, data} = this.props;
         requestServiceDelete(data);
     }
-    
+
     private unFoldOnClick(e: React.MouseEvent) {
         const {isFolded} = this.state;
         this.setState({isFolded: !isFolded});
